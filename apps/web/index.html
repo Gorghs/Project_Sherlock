@@ -3,76 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234f46e5'><circle cx='11' cy='11' r='8'/><line x1='21' y1='21' x2='16.65' y2='16.65' stroke='%234f46e5' stroke-width='2'/></svg>">
-    <title>Sherlock — Automated Job Aggregation Dashboard</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'><circle cx='11' cy='11' r='8'/><line x1='21' y1='21' x2='16.65' y2='16.65' stroke='%232563eb' stroke-width='2.5'/></svg>">
+    <title>Sherlock — Automated Job Aggregation Engine</title>
     <style>
         :root {
-            /* Light Theme Canvas & Surface */
-            --bg-canvas: #f8fafc;
-            --bg-surface: #ffffff;
+            /* Pure Blue Light Theme — Zero Gradients */
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
             --bg-subtle: #f1f5f9;
             --bg-muted: #e2e8f0;
             --bg-hover: #f8fafc;
 
-            /* Text Hierarchy */
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --text-muted: #64748b;
-            --text-subtle: #94a3b8;
-            --text-inverse: #ffffff;
-
-            /* Primary Brand Accent (Indigo / Royal Blue) */
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --primary-light: #eef2ff;
-            --primary-border: #c7d2fe;
-            --primary-focus: rgba(79, 70, 229, 0.25);
-
-            /* Semantic Success */
-            --success-bg: #ecfdf5;
-            --success-border: #a7f3d0;
-            --success-text: #065f46;
-            --success-accent: #10b981;
-
-            /* Semantic Warning */
-            --warning-bg: #fffbeb;
-            --warning-border: #fde68a;
-            --warning-text: #92400e;
-            --warning-accent: #f59e0b;
-
-            /* Semantic Danger */
-            --danger-bg: #fef2f2;
-            --danger-border: #fecdd3;
-            --danger-text: #9f1239;
-            --danger-accent: #ef4444;
-
-            /* Neutral Borders */
+            /* Borders */
             --border-light: #e2e8f0;
             --border-medium: #cbd5e1;
             --border-dark: #94a3b8;
 
-            /* Layered Shadows */
-            --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
-            --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.07), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
-            --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
-            --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
+            /* Pure Solid Tech Blue */
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --blue-800: #1e40af;
+            --blue-50: #eff6ff;
+            --blue-100: #dbeafe;
+            --blue-200: #bfdbfe;
 
             /* Typography */
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-mono: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+            --text-title: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --text-subtle: #94a3b8;
+            --text-white: #ffffff;
 
-            /* Radii */
-            --radius-sm: 6px;
-            --radius-md: 10px;
-            --radius-lg: 14px;
+            /* Functional Status Colors */
+            --green-bg: #f0fdf4;
+            --green-border: #bbf7d0;
+            --green-text: #166534;
+            --green-solid: #16a34a;
+
+            --amber-bg: #fffbeb;
+            --amber-border: #fde68a;
+            --amber-text: #92400e;
+            --amber-solid: #d97706;
+
+            --red-bg: #fef2f2;
+            --red-border: #fecdd3;
+            --red-text: #991b1b;
+            --red-solid: #dc2626;
+
+            /* Fonts & Metrics */
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
             --radius-full: 9999px;
-
-            /* Transitions */
-            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
         }
 
         * {
@@ -83,414 +69,267 @@
 
         body {
             font-family: var(--font-sans);
-            background-color: var(--bg-canvas);
-            color: var(--text-secondary);
-            overflow-x: hidden;
-            line-height: 1.6;
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            line-height: 1.5;
+            font-size: 14px;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Subtle modern light grid pattern */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(var(--border-medium) 1px, transparent 1px);
-            background-size: 28px 28px;
-            opacity: 0.45;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* ── Header ────────────────────────────────────────── */
-        header {
-            padding: 1.1rem 0;
+        /* ── Top Navigation Bar ────────────────────────────── */
+        .navbar {
+            background-color: var(--bg-card);
             border-bottom: 1px solid var(--border-light);
             position: sticky;
             top: 0;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 100;
-            box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
+            z-index: 50;
         }
 
-        .header-content {
-            max-width: 1360px;
+        .navbar-inner {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 24px;
+            height: 60px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
-        .brand-container {
+        .brand {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 10px;
             text-decoration: none;
         }
 
-        .brand-logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--primary) 0%, #312e81 100%);
-            border-radius: var(--radius-md);
+        .brand-icon {
+            width: 28px;
+            height: 28px;
+            background-color: var(--blue-600);
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ffffff;
-            box-shadow: 0 2px 6px rgba(79, 70, 229, 0.35);
+            color: var(--text-white);
         }
 
-        .logo {
-            font-size: 1.35rem;
+        .brand-title {
+            font-size: 16px;
             font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
+            color: var(--text-title);
+            letter-spacing: -0.01em;
         }
 
-        .logo-tag {
-            font-size: 0.7rem;
+        .brand-pill {
+            font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            background: var(--primary-light);
-            color: var(--primary);
-            padding: 0.15rem 0.5rem;
-            border-radius: var(--radius-full);
-            border: 1px solid var(--primary-border);
+            padding: 2px 6px;
+            background-color: var(--blue-50);
+            color: var(--blue-700);
+            border: 1px solid var(--blue-200);
+            border-radius: var(--radius-sm);
         }
 
-        .header-nav {
+        .nav-links {
             display: flex;
-            gap: 1.75rem;
             align-items: center;
+            gap: 20px;
         }
 
-        .header-nav a {
+        .nav-link {
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.92rem;
             font-weight: 500;
-            letter-spacing: 0.01em;
-            transition: color var(--transition-fast);
-            padding: 0.35rem 0;
-            position: relative;
+            font-size: 13px;
+            transition: color 150ms;
         }
 
-        .header-nav a:hover {
-            color: var(--text-primary);
+        .nav-link:hover {
+            color: var(--blue-600);
         }
 
-        .header-nav a.active {
-            color: var(--primary);
-            font-weight: 600;
+        .nav-divider {
+            width: 1px;
+            height: 20px;
+            background-color: var(--border-light);
         }
 
-        .status-badge {
+        .nav-telemetry {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.82rem;
+            gap: 6px;
+            font-size: 12px;
             font-weight: 600;
-            padding: 0.35rem 0.8rem;
+            padding: 4px 10px;
             border-radius: var(--radius-full);
-            background: var(--success-bg);
-            color: var(--success-text);
-            border: 1px solid var(--success-border);
-            transition: all var(--transition-base);
+            border: 1px solid var(--green-border);
+            background-color: var(--green-bg);
+            color: var(--green-text);
         }
 
-        .status-badge.inactive {
-            background: var(--bg-subtle);
-            color: var(--text-muted);
-            border-color: var(--border-medium);
+        .nav-telemetry.paused {
+            border-color: var(--amber-border);
+            background-color: var(--amber-bg);
+            color: var(--amber-text);
+        }
+
+        .nav-telemetry.running {
+            border-color: var(--blue-200);
+            background-color: var(--blue-50);
+            color: var(--blue-700);
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
-            background: var(--success-accent);
-            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
-            animation: pulse 2s infinite;
-        }
-
-        .status-badge.inactive .status-dot {
-            background: var(--text-subtle);
-            box-shadow: none;
-            animation: none;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.15); }
+            background-color: currentColor;
         }
 
         /* ── Main Container ────────────────────────────────── */
-        main {
-            max-width: 1360px;
+        .container {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 2.5rem 2rem 5rem 2rem;
+            padding: 24px;
         }
 
-        /* ── Hero Section ──────────────────────────────────── */
-        .hero {
-            text-align: left;
-            margin-bottom: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .hero-left {
-            max-width: 700px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--primary);
-            background: var(--primary-light);
-            border: 1px solid var(--primary-border);
-            padding: 0.25rem 0.75rem;
-            border-radius: var(--radius-full);
-            margin-bottom: 0.75rem;
-        }
-
-        .hero h1 {
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.03em;
-            line-height: 1.25;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero p {
-            font-size: 1.02rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .hero-metrics {
-            display: flex;
-            gap: 1.25rem;
-        }
-
-        .metric-pill {
-            background: var(--bg-surface);
+        /* ── Master Automation Control Bar ─────────────────── */
+        .master-bar {
+            background-color: var(--bg-card);
             border: 1px solid var(--border-light);
-            padding: 0.6rem 1.1rem;
+            border-left: 4px solid var(--blue-600);
             border-radius: var(--radius-md);
-            box-shadow: var(--shadow-xs);
+            padding: 16px 20px;
+            margin-bottom: 24px;
             display: flex;
-            flex-direction: column;
-        }
-
-        .metric-pill-label {
-            font-size: 0.72rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-subtle);
-        }
-
-        .metric-pill-val {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            font-feature-settings: "tnum" 1;
-        }
-
-        /* ── Automation Master Control Card ─────────────────── */
-        .automation-master-card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem 2rem;
-            box-shadow: var(--shadow-sm);
-            display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden;
+            gap: 20px;
+            box-shadow: var(--shadow-sm);
         }
 
-        .automation-master-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: var(--success-accent);
-            transition: background var(--transition-base);
+        .master-bar.state-paused {
+            border-left-color: var(--amber-solid);
         }
 
-        .automation-master-card.state-paused::before {
-            background: var(--warning-accent);
-        }
-
-        .master-toggle-info {
+        .master-bar-info {
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
+            gap: 3px;
         }
 
-        .master-toggle-header {
+        .master-bar-title-row {
             display: flex;
             align-items: center;
-            gap: 0.85rem;
+            gap: 10px;
         }
 
-        .master-toggle-title {
-            font-size: 1.2rem;
+        .master-bar-title {
+            font-size: 15px;
             font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
-            margin: 0;
+            color: var(--text-title);
         }
 
-        .master-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.22rem 0.65rem;
+        .badge-status {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 8px;
             border-radius: var(--radius-full);
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            transition: all var(--transition-base);
+            background-color: var(--green-bg);
+            color: var(--green-text);
+            border: 1px solid var(--green-border);
         }
 
-        .master-badge.active {
-            background: var(--success-bg);
-            color: var(--success-text);
-            border: 1px solid var(--success-border);
+        .badge-status.paused {
+            background-color: var(--amber-bg);
+            color: var(--amber-text);
+            border-color: var(--amber-border);
         }
 
-        .master-badge.active .indicator-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--success-accent);
-            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
-            animation: pulse 2s infinite;
+        .badge-status.running {
+            background-color: var(--blue-50);
+            color: var(--blue-700);
+            border-color: var(--blue-200);
         }
 
-        .master-badge.paused {
-            background: var(--warning-bg);
-            color: var(--warning-text);
-            border: 1px solid var(--warning-border);
+        .master-bar-desc {
+            font-size: 13px;
+            color: var(--text-muted);
         }
 
-        .master-badge.paused .indicator-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--warning-accent);
-        }
-
-        .master-toggle-desc {
-            font-size: 0.92rem;
-            color: var(--text-secondary);
-            margin: 0;
-        }
-
-        .master-toggle-desc strong {
-            color: var(--text-primary);
-        }
-
-        /* Tactile Master Switch Component */
-        .master-switch-wrapper {
+        .master-bar-controls {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 16px;
+            flex-shrink: 0;
         }
 
-        .master-switch-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
+        /* Pure Solid Tactile Switch */
+        .switch-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .switch-label {
+            font-size: 12px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
         }
 
-        .switch-control {
-            background: none;
+        .switch-btn {
+            width: 52px;
+            height: 28px;
+            background-color: var(--border-medium);
             border: none;
-            padding: 0;
+            border-radius: var(--radius-full);
+            position: relative;
             cursor: pointer;
             outline: none;
-            position: relative;
+            transition: background-color 150ms;
         }
 
-        .switch-control:focus-visible .switch-track {
-            box-shadow: 0 0 0 3px var(--primary-focus);
+        .switch-btn:focus-visible {
+            outline: 2px solid var(--blue-600);
+            outline-offset: 2px;
         }
 
-        .switch-track {
-            position: relative;
-            display: inline-block;
-            width: 62px;
-            height: 34px;
-            background-color: var(--border-medium);
-            border-radius: var(--radius-full);
-            transition: background-color var(--transition-base), box-shadow var(--transition-base);
-        }
-
-        .switch-control.switch-active .switch-track {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+        .switch-btn.active {
+            background-color: var(--blue-600);
         }
 
         .switch-thumb {
+            width: 22px;
+            height: 22px;
+            background-color: #ffffff;
+            border-radius: 50%;
             position: absolute;
             top: 3px;
             left: 3px;
-            width: 28px;
-            height: 28px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(15, 23, 42, 0.18);
-            transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 150ms;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .switch-control.switch-active .switch-thumb {
-            transform: translateX(28px);
+        .switch-btn.active .switch-thumb {
+            transform: translateX(24px);
         }
 
         .switch-spinner {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             display: none;
             animation: spin 0.8s linear infinite;
-            color: var(--primary);
+            color: var(--blue-600);
         }
 
-        .switch-control.is-loading .switch-spinner {
+        .switch-btn.loading .switch-spinner {
             display: block;
         }
 
@@ -499,1279 +338,775 @@
             to { transform: rotate(360deg); }
         }
 
-        /* ── Grid Layout ───────────────────────────────────── */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.75rem;
-            margin-bottom: 2rem;
-        }
-
-        /* ── Modern Card Surface ───────────────────────────── */
-        .card {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
-            transition: border-color var(--transition-base), box-shadow var(--transition-base);
-        }
-
-        .card:hover {
-            border-color: var(--border-medium);
-            box-shadow: var(--shadow-md);
-        }
-
-        .card-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.25rem;
-        }
-
-        .card h2 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
-            margin-bottom: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .card-badge {
-            font-size: 0.75rem;
-            font-weight: 600;
-            background: var(--bg-subtle);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-light);
-            padding: 0.18rem 0.55rem;
-            border-radius: var(--radius-full);
-            font-feature-settings: "tnum" 1;
-        }
-
-        .card-divider {
-            height: 1px;
-            background: var(--border-light);
-            margin: 1.5rem 0;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.45rem;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .time-controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 0.65rem;
-        }
-
-        .time-controls select,
-        .form-input {
-            width: 100%;
-            padding: 0.75rem 0.9rem;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-            font-family: var(--font-sans);
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all var(--transition-fast);
-            font-feature-settings: "tnum" 1;
-        }
-
-        .time-controls select:focus,
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px var(--primary-focus);
-        }
-
-        .schedule-note {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            margin-top: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-
-        /* ── Inline Action Input ───────────────────────────── */
-        .inline-form {
-            display: flex;
-            gap: 0.65rem;
-        }
-
-        .input-icon-wrapper {
-            position: relative;
-            flex: 1;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 0.85rem;
-            color: var(--text-subtle);
-            pointer-events: none;
-        }
-
-        .input-with-icon {
-            padding-left: 2.35rem !important;
-        }
-
-        /* ── Buttons ───────────────────────────────────────── */
-        .button-group {
-            display: flex;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-        }
-
+        /* ── Action Buttons ────────────────────────────────── */
         .btn {
-            flex: 1;
-            padding: 0.75rem 1.25rem;
-            border: 1px solid transparent;
-            border-radius: var(--radius-md);
-            font-family: var(--font-sans);
-            font-size: 0.88rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-fast);
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.45rem;
+            gap: 6px;
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: var(--radius-md);
+            border: 1px solid transparent;
+            cursor: pointer;
             text-decoration: none;
+            transition: background-color 120ms, border-color 120ms;
+            white-space: nowrap;
         }
 
         .btn:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 3px var(--primary-focus);
+            outline: 2px solid var(--blue-600);
+            outline-offset: 2px;
         }
 
         .btn-primary {
-            background: var(--primary);
-            color: #ffffff;
-            box-shadow: var(--shadow-xs);
+            background-color: var(--blue-600);
+            color: var(--text-white);
+            border-color: var(--blue-700);
         }
 
         .btn-primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-sm);
+            background-color: var(--blue-700);
         }
 
         .btn-secondary {
-            background: var(--bg-surface);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-medium);
+            background-color: var(--bg-card);
+            color: var(--text-body);
+            border-color: var(--border-medium);
         }
 
         .btn-secondary:hover {
-            background: var(--bg-subtle);
-            color: var(--text-primary);
+            background-color: var(--bg-subtle);
             border-color: var(--border-dark);
+            color: var(--text-title);
         }
 
-        .btn-inline {
-            flex: 0 0 auto;
-            white-space: nowrap;
-            padding: 0.75rem 1.25rem;
+        .btn-danger {
+            background-color: transparent;
+            color: var(--red-solid);
+            border-color: transparent;
+            padding: 4px 8px;
+            font-size: 12px;
         }
 
-        /* ── Display Table / Key-Values ─────────────────────── */
-        .config-display {
-            background: var(--bg-subtle);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: 1.1rem 1.25rem;
-            margin-top: 1.5rem;
+        .btn-danger:hover {
+            background-color: var(--red-bg);
+            border-color: var(--red-border);
         }
 
-        .config-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.55rem 0;
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-            font-size: 0.88rem;
+        .btn-sm {
+            padding: 4px 10px;
+            font-size: 12px;
         }
 
-        .config-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+        /* ── Grid Layout ───────────────────────────────────── */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 420px 1fr;
+            gap: 24px;
+            align-items: start;
         }
 
-        .config-item:first-child {
-            padding-top: 0;
-        }
-
-        .config-label {
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .config-value {
-            color: var(--text-primary);
-            font-weight: 600;
-            font-feature-settings: "tnum" 1;
-        }
-
-        /* ── Recipients List ───────────────────────────────── */
-        .recipients-list {
+        .column {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            max-height: 220px;
-            overflow-y: auto;
-            padding-right: 0.25rem;
+            gap: 24px;
         }
 
-        .recipient-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.65rem 0.9rem;
-            background: var(--bg-subtle);
+        /* ── Cards ─────────────────────────────────────────── */
+        .card {
+            background-color: var(--bg-card);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-md);
-            transition: border-color var(--transition-fast);
-        }
-
-        .recipient-item:hover {
-            border-color: var(--border-medium);
-        }
-
-        .recipient-info {
-            display: flex;
-            align-items: center;
-            gap: 0.65rem;
-        }
-
-        .recipient-avatar {
-            width: 26px;
-            height: 26px;
-            background: var(--primary-light);
-            color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.72rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .recipient-email {
-            font-size: 0.88rem;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .btn-delete {
-            background: transparent;
-            color: var(--text-subtle);
-            border: 1px solid transparent;
-            border-radius: var(--radius-sm);
-            padding: 0.3rem 0.5rem;
-            cursor: pointer;
-            font-size: 0.78rem;
-            font-weight: 600;
-            transition: all var(--transition-fast);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .btn-delete:hover {
-            background: var(--danger-bg);
-            color: var(--danger-accent);
-            border-color: var(--danger-border);
-        }
-
-        /* ── Agent Activity Console ────────────────────────── */
-        .activity-card {
-            grid-column: 1 / -1;
-        }
-
-        .activity-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.9rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-        }
-
-        .activity-state {
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.15rem 0.55rem;
-            border-radius: var(--radius-full);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        .activity-state.running {
-            background: var(--success-bg);
-            color: var(--success-text);
-            border: 1px solid var(--success-border);
-        }
-
-        .activity-state.idle {
-            background: var(--bg-subtle);
-            color: var(--text-muted);
-            border: 1px solid var(--border-light);
-        }
-
-        .activity-toolbar {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .activity-log-box {
-            background: #0f172a;
-            color: #e2e8f0;
-            border: 1px solid #1e293b;
-            border-radius: var(--radius-md);
-            padding: 1.1rem;
-            min-height: 220px;
-            max-height: 320px;
-            overflow-y: auto;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            line-height: 1.6;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .activity-row {
-            margin-bottom: 0.3rem;
-            white-space: pre-wrap;
-            word-break: break-word;
-            display: flex;
-            gap: 0.6rem;
-        }
-
-        .activity-time {
-            color: #64748b;
-            font-feature-settings: "tnum" 1;
-            flex-shrink: 0;
-        }
-
-        .activity-tag {
-            font-weight: 700;
-            font-size: 0.72rem;
-            border-radius: 3px;
-            padding: 0.05rem 0.35rem;
-            flex-shrink: 0;
-        }
-
-        .activity-tag.info {
-            background: rgba(56, 189, 248, 0.15);
-            color: #38bdf8;
-        }
-
-        .activity-tag.warn {
-            background: rgba(251, 191, 36, 0.15);
-            color: #fbbf24;
-        }
-
-        .activity-tag.error {
-            background: rgba(248, 113, 113, 0.15);
-            color: #f87171;
-        }
-
-        .activity-msg {
-            color: #cbd5e1;
-            word-break: break-word;
-        }
-
-        .activity-empty {
-            color: #64748b;
-            font-style: italic;
-        }
-
-        /* ── Saved Jobs Section ────────────────────────────── */
-        .jobs-card {
-            grid-column: 1 / -1;
-        }
-
-        .jobs-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.25rem;
-        }
-
-        .section-note {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 0.25rem;
-        }
-
-        .jobs-summary {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .jobs-stat {
-            padding: 1.1rem 1.25rem;
-            border-radius: var(--radius-md);
-            background: var(--bg-subtle);
-            border: 1px solid var(--border-light);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .jobs-stat-label {
-            display: block;
-            color: var(--text-muted);
-            font-size: 0.76rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.25rem;
-        }
-
-        .jobs-stat-value {
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            font-feature-settings: "tnum" 1;
-        }
-
-        .jobs-list {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .job-item {
-            padding: 1.35rem 1.5rem;
-            border-radius: var(--radius-md);
-            background: var(--bg-surface);
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-xs);
-            display: grid;
-            gap: 0.85rem;
-            transition: all var(--transition-fast);
-        }
-
-        .job-item:hover {
-            border-color: var(--border-medium);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-1px);
-        }
-
-        .job-item-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .job-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
-            margin-bottom: 0.2rem;
-        }
-
-        .job-company {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .job-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .job-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.28rem 0.7rem;
-            border-radius: var(--radius-full);
-            font-size: 0.78rem;
-            font-weight: 500;
-            background: var(--bg-subtle);
-            border: 1px solid var(--border-light);
-            color: var(--text-secondary);
-            font-feature-settings: "tnum" 1;
-        }
-
-        .job-pill.source {
-            background: #f5f3ff;
-            color: #6d28d9;
-            border-color: #ddd6fe;
-            font-weight: 600;
-        }
-
-        .job-pill.salary {
-            background: var(--success-bg);
-            color: var(--success-text);
-            border-color: var(--success-border);
-            font-weight: 600;
-        }
-
-        .job-pill.expiry {
-            background: var(--warning-bg);
-            color: var(--warning-text);
-            border-color: var(--warning-border);
-        }
-
-        .job-actions {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
-            border-top: 1px solid var(--bg-subtle);
-            padding-top: 0.75rem;
-        }
-
-        .expires-note {
-            color: var(--text-subtle);
-            font-size: 0.82rem;
-        }
-
-        .apply-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.35rem;
-            padding: 0.55rem 1.1rem;
-            border-radius: var(--radius-md);
-            background: var(--primary);
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all var(--transition-fast);
-        }
-
-        .apply-link:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
             box-shadow: var(--shadow-sm);
         }
 
-        .empty-state {
-            text-align: center;
-            padding: 2.5rem 1rem;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            background: var(--bg-subtle);
-            border-radius: var(--radius-md);
-            border: 1px dashed var(--border-medium);
-        }
-
-        /* ── Modern Toast Notification System ─────────────── */
-        .toast-container {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.65rem;
-            z-index: 9999;
-            pointer-events: none;
-        }
-
-        .toast {
-            pointer-events: auto;
-            min-width: 280px;
-            max-width: 420px;
-            background: #ffffff;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-lg);
-            border-left: 4px solid var(--primary);
-            padding: 0.9rem 1.1rem;
+        .card-header {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-light);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 0.75rem;
-            animation: toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            transition: opacity 0.25s ease, transform 0.25s ease;
         }
 
-        .toast.success {
-            border-left-color: var(--success-accent);
+        .card-header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .toast.error {
-            border-left-color: var(--danger-accent);
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-title);
         }
 
-        .toast-text {
-            font-size: 0.88rem;
+        .card-count {
+            font-size: 11px;
+            font-weight: 600;
+            background-color: var(--bg-subtle);
+            color: var(--text-muted);
+            border: 1px solid var(--border-light);
+            padding: 1px 7px;
+            border-radius: var(--radius-full);
+            font-feature-settings: "tnum" 1;
+        }
+
+        .card-body {
+            padding: 18px;
+        }
+
+        /* ── Form Controls ─────────────────────────────────── */
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .form-select,
+        .form-input {
+            width: 100%;
+            height: 36px;
+            padding: 0 10px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-md);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            color: var(--text-title);
+            outline: none;
+            transition: border-color 120ms;
+        }
+
+        .form-select:focus,
+        .form-input:focus {
+            border-color: var(--blue-600);
+            box-shadow: 0 0 0 1px var(--blue-600);
+        }
+
+        .time-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .conversion-note {
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+            background-color: var(--bg-subtle);
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            font-feature-settings: "tnum" 1;
+        }
+
+        .conversion-note strong {
+            color: var(--blue-700);
+        }
+
+        /* ── Key-Value Summary List ────────────────────────── */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .info-table td {
+            padding: 8px 0;
+            font-size: 13px;
+        }
+
+        .info-table td.label {
+            color: var(--text-muted);
+            width: 45%;
+        }
+
+        .info-table td.val {
+            color: var(--text-title);
+            font-weight: 600;
+            text-align: right;
+            font-feature-settings: "tnum" 1;
+        }
+
+        /* ── Email Recipients List ─────────────────────────── */
+        .input-button-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .recipients-list {
+            margin-top: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+
+        .recipient-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 10px;
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+        }
+
+        .recipient-email {
+            font-size: 13px;
             font-weight: 500;
-            color: var(--text-primary);
+            color: var(--text-title);
         }
 
-        .toast-close {
+        /* ── Activity Console ──────────────────────────────── */
+        .console-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .console-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .console-state-tag {
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-subtle);
+            color: var(--text-muted);
+            border: 1px solid var(--border-light);
+        }
+
+        .console-state-tag.running {
+            background-color: var(--green-bg);
+            color: var(--green-text);
+            border-color: var(--green-border);
+        }
+
+        .console-box {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            border: 1px solid #1e293b;
+            border-radius: var(--radius-md);
+            padding: 12px;
+            height: 260px;
+            overflow-y: auto;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .console-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 3px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .console-time {
+            color: #64748b;
+            flex-shrink: 0;
+            font-feature-settings: "tnum" 1;
+        }
+
+        .console-level {
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 11px;
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+
+        .console-level.info { color: #38bdf8; background-color: rgba(56, 189, 248, 0.1); }
+        .console-level.warn { color: #fbbf24; background-color: rgba(251, 191, 36, 0.1); }
+        .console-level.error { color: #f87171; background-color: rgba(248, 113, 113, 0.1); }
+
+        .console-msg {
+            color: #cbd5e1;
+        }
+
+        .console-empty {
+            color: #64748b;
+            font-style: italic;
+            padding: 8px 0;
+        }
+
+        /* ── Saved Jobs Explorer ───────────────────────────── */
+        .jobs-summary-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .summary-block {
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+        }
+
+        .summary-block-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .summary-block-val {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-title);
+            font-feature-settings: "tnum" 1;
+        }
+
+        .jobs-filter-bar {
+            margin-bottom: 14px;
+        }
+
+        .jobs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 520px;
+            overflow-y: auto;
+            padding-right: 2px;
+        }
+
+        .job-card {
+            padding: 14px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            background-color: var(--bg-card);
+            transition: border-color 120ms;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .job-card:hover {
+            border-color: var(--border-dark);
+        }
+
+        .job-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .job-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-title);
+        }
+
+        .job-card-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 1px;
+        }
+
+        .job-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-subtle);
+            color: var(--text-body);
+            border: 1px solid var(--border-light);
+            font-feature-settings: "tnum" 1;
+        }
+
+        .pill.source {
+            background-color: var(--blue-50);
+            color: var(--blue-700);
+            border-color: var(--blue-200);
+        }
+
+        .pill.salary {
+            background-color: var(--green-bg);
+            color: var(--green-text);
+            border-color: var(--green-border);
+        }
+
+        .pill.expiry {
+            background-color: var(--amber-bg);
+            color: var(--amber-text);
+            border-color: var(--amber-border);
+        }
+
+        .job-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-light);
+            padding-top: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .apply-btn {
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--radius-sm);
+            background-color: var(--blue-600);
+            color: var(--text-white);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .apply-btn:hover {
+            background-color: var(--blue-700);
+        }
+
+        .empty-placeholder {
+            text-align: center;
+            padding: 32px 16px;
+            color: var(--text-muted);
+            background-color: var(--bg-subtle);
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--border-medium);
+            font-size: 13px;
+        }
+
+        /* ── Toast Notifications ───────────────────────────── */
+        .toast-shelf {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        .toast-item {
+            pointer-events: auto;
+            min-width: 260px;
+            max-width: 400px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-left: 4px solid var(--blue-600);
+            border-radius: var(--radius-md);
+            padding: 10px 14px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-title);
+        }
+
+        .toast-item.success { border-left-color: var(--green-solid); }
+        .toast-item.error { border-left-color: var(--red-solid); }
+
+        .toast-close-btn {
             background: none;
             border: none;
-            color: var(--text-subtle);
+            color: var(--text-muted);
             cursor: pointer;
-            padding: 0.2rem;
-            font-size: 1rem;
+            font-size: 14px;
             line-height: 1;
         }
 
-        .toast-close:hover {
-            color: var(--text-primary);
-        }
-
-        @keyframes toastSlideUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Backward compatible message banner inside cards */
-        .success-message {
-            background: var(--success-bg);
-            border: 1px solid var(--success-border);
-            color: var(--success-text);
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius-md);
-            margin-bottom: 1rem;
-            display: none;
-            font-size: 0.88rem;
-            font-weight: 500;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        .success-message.error {
-            background: var(--danger-bg);
-            border-color: var(--danger-border);
-            color: var(--danger-text);
-        }
-
-        /* ── Footer ────────────────────────────────────────── */
-        footer {
-            border-top: 1px solid var(--border-light);
-            padding: 2rem 0;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-top: 4rem;
-        }
-
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        /* ── Responsive Mobile Media Queries ───────────────── */
-        @media (max-width: 900px) {
-            .content-grid {
+        /* ── Responsive ────────────────────────────────────── */
+        @media (max-width: 960px) {
+            .dashboard-grid {
                 grid-template-columns: 1fr;
             }
-
-            .automation-master-card {
+            .master-bar {
                 flex-direction: column;
                 align-items: flex-start;
             }
-
-            .master-switch-wrapper {
-                align-self: flex-start;
-            }
-
-            .jobs-summary {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 1.85rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            main {
-                padding: 1.5rem 1rem 3rem 1rem;
-            }
-
-            .header-content {
-                flex-direction: column;
-                gap: 0.75rem;
-                padding: 0 1rem;
-            }
-
-            .header-nav {
+            .master-bar-controls {
                 width: 100%;
                 justify-content: space-between;
-                font-size: 0.85rem;
-            }
-
-            .inline-form {
-                flex-direction: column;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            .time-controls {
-                grid-template-columns: 1fr 1fr 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Toast Feedback System -->
-    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+    <!-- Toast Shelf -->
+    <div class="toast-shelf" id="toastShelf"></div>
 
-    <!-- Sticky Navigation Header -->
-    <header>
-        <div class="header-content">
-            <a href="#home" class="brand-container">
-                <div class="brand-logo-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top Navigation -->
+    <header class="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="brand">
+                <div class="brand-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
                 </div>
-                <div class="logo">
-                    SHERLOCK
-                    <span class="logo-tag">AUTOMATION</span>
-                </div>
+                <span class="brand-title">Sherlock</span>
+                <span class="brand-pill">Engine</span>
             </a>
-            <div class="header-nav">
-                <a href="#home" class="active">Dashboard</a>
-                <a href="#today-jobs">Today's Jobs</a>
-                <div class="status-badge" id="headerStatusBadge">
+
+            <div class="nav-links">
+                <div class="nav-telemetry" id="topNavTelemetry">
                     <span class="status-dot"></span>
-                    <span id="headerStatusText">Active</span>
+                    <span id="topNavStatusText">Automation Active</span>
                 </div>
+                <div class="nav-divider"></div>
+                <a href="/docs" target="_blank" class="nav-link">API Docs</a>
+                <a href="/swg" target="_blank" class="nav-link">Swagger</a>
+                <a href="/graphql" target="_blank" class="nav-link">GraphQL</a>
             </div>
         </div>
     </header>
 
-    <main id="home">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-left">
-                <div class="hero-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                    </svg>
-                    Job Intelligence Engine
+    <div class="container">
+        <!-- Master Automation Control Bar -->
+        <section class="master-bar" id="masterBar">
+            <div class="master-bar-info">
+                <div class="master-bar-title-row">
+                    <h1 class="master-bar-title">Sherlock Automation Master Control</h1>
+                    <span class="badge-status" id="masterStatusBadge">ACTIVE</span>
                 </div>
-                <h1>Sherlock Automation Hub</h1>
-                <p>Manage continuous multi-source job aggregation, automated delivery schedules, and recipient dispatches.</p>
-            </div>
-            <div class="hero-metrics">
-                <div class="metric-pill">
-                    <span class="metric-pill-label">Sources Active</span>
-                    <span class="metric-pill-val">160+ Boards</span>
-                </div>
-                <div class="metric-pill">
-                    <span class="metric-pill-label">Filter Pipeline</span>
-                    <span class="metric-pill-val">AI Scoring</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sherlock ON/OFF Master Control Card -->
-        <div class="automation-master-card" id="automationMasterCard">
-            <div class="master-toggle-info">
-                <div class="master-toggle-header">
-                    <div class="master-badge active" id="masterStatusBadge">
-                        <span class="indicator-dot"></span>
-                        <span id="masterBadgeText">AUTOMATION ON</span>
-                    </div>
-                    <h2 class="master-toggle-title">Sherlock Automation</h2>
-                </div>
-                <p class="master-toggle-desc" id="masterStatusDesc">
-                    Sherlock automation is active — scheduled daily runs and background queues execute normally.
+                <p class="master-bar-desc" id="masterStatusDesc">
+                    Automated job searches and notifications run on schedule.
                 </p>
             </div>
 
-            <div class="master-switch-wrapper">
-                <span class="master-switch-label" id="masterSwitchStateLabel">ACTIVE</span>
-                <button type="button" 
-                        role="switch" 
-                        aria-checked="true" 
-                        id="masterAutomationToggle" 
-                        class="switch-control switch-active"
-                        onclick="toggleMasterAutomation()"
-                        aria-label="Toggle Sherlock Automation Master Engine">
-                    <span class="switch-track">
+            <div class="master-bar-controls">
+                <div class="switch-container">
+                    <span class="switch-label" id="switchStateLabel">ON</span>
+                    <button type="button" 
+                            role="switch" 
+                            aria-checked="true" 
+                            id="masterSwitchBtn" 
+                            class="switch-btn active" 
+                            onclick="handleMasterToggle()" 
+                            aria-label="Toggle Sherlock Automation Master Switch">
                         <span class="switch-thumb">
                             <svg class="switch-spinner" viewBox="0 0 24 24" fill="none">
                                 <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" opacity="0.3"></circle>
                                 <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
                             </svg>
                         </span>
-                    </span>
+                    </button>
+                </div>
+
+                <button class="btn btn-primary" id="btnRunNow" onclick="handleInstantTrigger()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Run Scrape Now
                 </button>
             </div>
-        </div>
+        </section>
 
-        <div class="content-grid">
-            <!-- Scheduler Configuration Card -->
-            <div class="card">
-                <div class="card-header-flex">
-                    <h2>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                        Schedule Settings
-                    </h2>
-                    <span class="card-badge" id="scheduleCardBadge">Daily (IST)</span>
-                </div>
-                <div class="success-message" id="schedulerMessage"></div>
-                
-                <div class="form-group">
-                    <label>Daily Trigger Time (IST)</label>
-                    <div class="time-controls">
-                        <select id="triggerHour"></select>
-                        <select id="triggerMinute"></select>
-                        <select id="triggerPeriod">
-                            <option value="AM">AM</option>
-                            <option value="PM">PM</option>
-                        </select>
-                    </div>
-                    <div class="schedule-note" id="scheduleConversion">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="16" x2="12" y2="12"></line>
-                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                        </svg>
-                        <span>Selected: 02:30 PM IST</span>
-                    </div>
-                </div>
-
-                <p style="font-size: 0.88rem; color: var(--text-muted); margin: 1.25rem 0 0 0;">
-                    Configured in India Standard Time (IST) and automatically translated to server UTC ticks.
-                </p>
-
-                <div class="card-divider"></div>
-
-                <div class="button-group">
-                    <button class="btn btn-primary" onclick="updateSchedule()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                            <polyline points="7 3 7 8 15 8"></polyline>
-                        </svg>
-                        Save Schedule
-                    </button>
-                    <button class="btn btn-secondary" id="instantTriggerBtn" onclick="triggerNow()">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                        </svg>
-                        Check Now
-                    </button>
-                </div>
-
-                <div class="config-display">
-                    <div class="config-item">
-                        <span class="config-label">Current Schedule</span>
-                        <span class="config-value" id="currentSchedule">02:30 PM IST</span>
-                    </div>
-                    <div class="config-item">
-                        <span class="config-label">Automation Status</span>
-                        <span class="config-value" id="currentScheduleStatus">Active</span>
-                    </div>
-                    <div class="config-item">
-                        <span class="config-label">Last Successful Run</span>
-                        <span class="config-value" id="lastRun">Not run yet</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Email Recipients Card -->
-            <div class="card">
-                <div class="card-header-flex">
-                    <h2>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                        Email Recipients
-                    </h2>
-                    <span class="card-badge" id="recipientCountBadge">0 configured</span>
-                </div>
-                <div class="success-message" id="recipientMessage"></div>
-
-                <div class="form-group">
-                    <label for="recipientEmail">Add Recipient Email</label>
-                    <div class="inline-form">
-                        <div class="input-icon-wrapper">
-                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="4"></circle>
-                                <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
-                            </svg>
-                            <input type="email" id="recipientEmail" class="form-input input-with-icon" placeholder="colleague@domain.com">
+        <!-- 2-Column Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Left Column: Settings & Configuration -->
+            <div class="column">
+                <!-- Schedule Configuration -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h2 class="card-title">Schedule Settings</h2>
                         </div>
-                        <button class="btn btn-primary btn-inline" onclick="addRecipient()">
-                            Add Recipient
+                        <span class="card-count" id="scheduleFrequencyBadge">Daily</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">Daily Run Time (India Standard Time)</label>
+                            <div class="time-row">
+                                <select id="triggerHour" class="form-select"></select>
+                                <select id="triggerMinute" class="form-select"></select>
+                                <select id="triggerPeriod" class="form-select">
+                                    <option value="AM">AM</option>
+                                    <option value="PM">PM</option>
+                                </select>
+                            </div>
+                            <div class="conversion-note" id="conversionNote">
+                                Selected: <strong>02:30 PM IST</strong> (translates to 09:00 UTC)
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" style="width: 100%;" onclick="handleSaveSchedule()">
+                            Save Schedule Time
                         </button>
+
+                        <table class="info-table">
+                            <tr>
+                                <td class="label">Configured Schedule</td>
+                                <td class="val" id="dispCurrentSchedule">02:30 PM IST</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Scheduler State</td>
+                                <td class="val" id="dispSchedulerState">Active</td>
+                            </tr>
+                            <tr>
+                                <td class="label">Last Successful Run</td>
+                                <td class="val" id="dispLastSuccessfulRun">Not run yet</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
-                <div class="card-divider"></div>
+                <!-- Email Recipients -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h2 class="card-title">Email Notification Recipients</h2>
+                        </div>
+                        <span class="card-count" id="recipientCountBadge">0 configured</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label" for="inputRecipientEmail">Add New Recipient</label>
+                            <div class="input-button-group">
+                                <input type="email" id="inputRecipientEmail" class="form-input" placeholder="developer@company.com">
+                                <button class="btn btn-secondary" onclick="handleAddRecipient()">Add</button>
+                            </div>
+                        </div>
 
-                <div class="recipients-list" id="recipientsList">
-                    <div class="empty-state">No recipients added yet</div>
-                </div>
-
-                <div class="config-display">
-                    <div class="config-item">
-                        <span class="config-label">Total Recipients</span>
-                        <span class="config-value" id="recipientCount">0</span>
+                        <div class="recipients-list" id="recipientsListContainer">
+                            <div class="empty-placeholder">No recipient emails configured</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Current Agent Activity Card -->
-            <div class="card activity-card" id="activities">
-                <div class="card-header-flex">
-                    <h2>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="4 17 10 11 4 5"></polyline>
-                            <line x1="12" y1="19" x2="20" y2="19"></line>
-                        </svg>
-                        Live Agent Console
-                    </h2>
-                    <div class="activity-toolbar">
-                        <button class="btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;" onclick="copyActivityLogs()">
-                            Copy Logs
-                        </button>
+            <!-- Right Column: Telemetry & Discovered Jobs -->
+            <div class="column">
+                <!-- Agent Activity Console -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h2 class="card-title">Live Agent Activity Telemetry</h2>
+                        </div>
+                        <div class="console-toolbar">
+                            <button class="btn btn-secondary btn-sm" onclick="copyConsoleLogs()">Copy Logs</button>
+                            <button class="btn btn-secondary btn-sm" onclick="clearConsoleView()">Clear</button>
+                        </div>
                     </div>
-                </div>
-                <div class="activity-meta">
-                    <div>Run State: <span id="activityState" class="activity-state idle">Idle</span></div>
-                    <div>Last Successful Run: <span id="activityLastRun" style="font-weight: 600; color: var(--text-primary); font-feature-settings: 'tnum' 1;">Not run yet</span></div>
-                </div>
-                <div id="activityLogBox" class="activity-log-box" aria-live="polite">
-                    <div class="activity-empty">Waiting for scheduler activity...</div>
-                </div>
-            </div>
-
-            <!-- Today's Saved Jobs Card -->
-            <div class="card jobs-card" id="today-jobs">
-                <div class="jobs-header">
-                    <div>
-                        <h2>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                            </svg>
-                            Today's Saved Jobs
-                        </h2>
-                        <div class="section-note">Discovered positions cached locally. Listings automatically expire after 24 hours.</div>
-                    </div>
-                    <button class="btn btn-secondary jobs-refresh-btn" onclick="fetchSavedJobs()">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="23 4 23 10 17 10"></polyline>
-                            <polyline points="1 20 1 14 7 14"></polyline>
-                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                        </svg>
-                        Refresh List
-                    </button>
-                </div>
-
-                <div class="jobs-summary">
-                    <div class="jobs-stat">
-                        <span class="jobs-stat-label">Jobs Visible</span>
-                        <span class="jobs-stat-value" id="savedJobsCount">0</span>
-                    </div>
-                    <div class="jobs-stat">
-                        <span class="jobs-stat-label">Cache Retention</span>
-                        <span class="jobs-stat-value">24 Hours</span>
-                    </div>
-                    <div class="jobs-stat">
-                        <span class="jobs-stat-label">Oldest Expiry</span>
-                        <span class="jobs-stat-value" id="savedJobsExpiry">--</span>
+                    <div class="card-body">
+                        <div class="console-meta">
+                            <div>Engine Status: <span class="console-state-tag" id="consoleEngineState">Idle</span></div>
+                            <div>Server Time (UTC): <span id="dispCurrentUtcTime" style="font-weight: 600;">--:--</span></div>
+                        </div>
+                        <div class="console-box" id="consoleLogBox" aria-live="polite">
+                            <div class="console-empty">Awaiting scheduler execution logs...</div>
+                        </div>
                     </div>
                 </div>
 
-                <div id="savedJobsList" class="jobs-list">
-                    <div class="empty-state">No saved jobs in current cache window. When Sherlock finds openings, they will appear here.</div>
+                <!-- Today's Saved Jobs -->
+                <div class="card" id="today-jobs">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <h2 class="card-title">Discovered Positions (Today's Cache)</h2>
+                        </div>
+                        <button class="btn btn-secondary btn-sm" onclick="fetchSavedJobs()">Refresh List</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="jobs-summary-strip">
+                            <div class="summary-block">
+                                <div class="summary-block-label">Positions Visible</div>
+                                <div class="summary-block-val" id="statJobsCount">0</div>
+                            </div>
+                            <div class="summary-block">
+                                <div class="summary-block-label">Cache Retention</div>
+                                <div class="summary-block-val">24 Hours</div>
+                            </div>
+                            <div class="summary-block">
+                                <div class="summary-block-label">Oldest Expiry</div>
+                                <div class="summary-block-val" id="statOldestExpiry">--</div>
+                            </div>
+                        </div>
+
+                        <div class="jobs-filter-bar">
+                            <input type="text" id="jobFilterInput" class="form-input" placeholder="Filter positions by title, company, or keyword..." oninput="handleJobFilter(this.value)">
+                        </div>
+
+                        <div class="jobs-list" id="jobsListContainer">
+                            <div class="empty-placeholder">No jobs in current 24-hour cache window. Click "Run Scrape Now" to execute search.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
-
-    <footer>
-        <p>Sherlock Multi-Source Job Discovery Engine &copy; 2026. Built with NestJS, TypeScript, and clean architecture.</p>
-    </footer>
+    </div>
 
     <script>
-        // State variables
-        let recipients = [];
-        let schedulerTimeUtc = '09:00';
-        let lastSuccessfulRunUtc = null;
-        let automationEnabled = true;
-        let isAutomationLoading = false;
-        let activityPollTimer = null;
-        let savedJobsPollTimer = null;
+        // Application State
+        let currentRecipients = [];
+        let currentSchedulerUtc = '09:00';
+        let currentLastRunUtc = null;
+        let isAutomationEnabled = true;
+        let isAutomationBusy = false;
+        let rawJobsCache = [];
+        let activityPollHandle = null;
+        let jobsPollHandle = null;
 
-        // ── Toast Notification System ────────────────────────
-        function showToast(message, type = 'success') {
-            const container = document.getElementById('toastContainer');
-            if (!container) return;
+        // ── Toast System ─────────────────────────────────────
+        function triggerToast(message, type = 'success') {
+            const shelf = document.getElementById('toastShelf');
+            if (!shelf) return;
 
             const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
+            toast.className = `toast-item ${type}`;
             toast.innerHTML = `
-                <span class="toast-text">${escapeHtml(message)}</span>
-                <button class="toast-close" onclick="this.parentElement.remove()" aria-label="Close notification">&times;</button>
+                <span>${escapeStr(message)}</span>
+                <button class="toast-close-btn" onclick="this.parentElement.remove()" aria-label="Dismiss">&times;</button>
             `;
-            container.appendChild(toast);
+            shelf.appendChild(toast);
 
             setTimeout(() => {
                 toast.style.opacity = '0';
-                toast.style.transform = 'translateY(10px)';
-                setTimeout(() => toast.remove(), 260);
-            }, 4000);
+                toast.style.transform = 'translateY(8px)';
+                setTimeout(() => toast.remove(), 200);
+            }, 3800);
         }
 
-        // Backward compatibility for existing showMessage calls
-        function showMessage(elementId, message, type = 'success') {
-            const element = document.getElementById(elementId);
-            if (element) {
-                element.textContent = message;
-                element.className = `success-message show ${type === 'error' ? 'error' : ''}`;
-                setTimeout(() => {
-                    element.classList.remove('show');
-                }, 3500);
-            }
-            showToast(message, type);
-        }
-
-        // ── Time & Timezone Utilities ────────────────────────
-        function format12Hour(hour24, minute) {
-            const period = hour24 >= 12 ? 'PM' : 'AM';
-            const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
-            return `${String(hour12).padStart(2, '0')}:${String(minute).padStart(2, '0')} ${period}`;
-        }
-
-        function utcToIstParts(utcTime) {
-            const [h, m] = (utcTime || '09:00').split(':').map(Number);
-            const utcMinutes = (h * 60) + m;
-            const istMinutes = (utcMinutes + 330 + 1440) % 1440;
-            const istHour24 = Math.floor(istMinutes / 60);
-            const istMinute = istMinutes % 60;
-            const period = istHour24 >= 12 ? 'PM' : 'AM';
-            const hour12 = istHour24 % 12 === 0 ? 12 : istHour24 % 12;
-
-            return {
-                hour: String(hour12).padStart(2, '0'),
-                minute: String(istMinute).padStart(2, '0'),
-                period,
-            };
-        }
-
-        function istPartsToUtc(hour12, minute, period) {
-            let hour24 = Number(hour12) % 12;
-            if (period === 'PM') {
-                hour24 += 12;
-            }
-
-            const istMinutes = (hour24 * 60) + Number(minute);
-            const utcMinutes = (istMinutes - 330 + 1440) % 1440;
-            const utcHour = Math.floor(utcMinutes / 60);
-            const utcMinute = utcMinutes % 60;
-            return `${String(utcHour).padStart(2, '0')}:${String(utcMinute).padStart(2, '0')}`;
-        }
-
-        function populateTimeDropdowns() {
-            const hourSelect = document.getElementById('triggerHour');
-            const minuteSelect = document.getElementById('triggerMinute');
-
-            hourSelect.innerHTML = '';
-            minuteSelect.innerHTML = '';
-
-            for (let h = 1; h <= 12; h += 1) {
-                const value = String(h).padStart(2, '0');
-                const option = document.createElement('option');
-                option.value = value;
-                option.textContent = value;
-                hourSelect.appendChild(option);
-            }
-
-            for (let m = 0; m <= 59; m += 1) {
-                const value = String(m).padStart(2, '0');
-                const option = document.createElement('option');
-                option.value = value;
-                option.textContent = value;
-                minuteSelect.appendChild(option);
-            }
-        }
-
-        function applyUtcTimeToIstUi(utcTime) {
-            const ist = utcToIstParts(utcTime);
-            document.getElementById('triggerHour').value = ist.hour;
-            document.getElementById('triggerMinute').value = ist.minute;
-            document.getElementById('triggerPeriod').value = ist.period;
-            updateConversionHint();
-        }
-
-        function getSelectedUtcFromIstUi() {
-            const hour = document.getElementById('triggerHour').value;
-            const minute = document.getElementById('triggerMinute').value;
-            const period = document.getElementById('triggerPeriod').value;
-            return istPartsToUtc(hour, minute, period);
-        }
-
-        function updateConversionHint() {
-            const utc = getSelectedUtcFromIstUi();
-            const ist = utcToIstParts(utc);
-            document.getElementById('scheduleConversion').innerHTML = `
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="12" y1="16" x2="12" y2="12"></line>
-                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                </svg>
-                <span>Selected: <strong>${ist.hour}:${ist.minute} ${ist.period} IST</strong> (translates to ${utc} UTC)</span>
-            `;
-        }
-
-        function updateScheduleText(utcTime) {
-            const ist = utcToIstParts(utcTime);
-            document.getElementById('currentSchedule').textContent = `${ist.hour}:${ist.minute} ${ist.period} IST`;
-        }
-
-        function updateLastRunText(lastRunUtc) {
-            const lastRunElement = document.getElementById('lastRun');
-            if (!lastRunUtc) {
-                lastRunElement.textContent = 'Not run yet';
-                return;
-            }
-
-            const date = new Date(lastRunUtc);
-            const formatted = date.toLocaleString('en-IN', {
-                timeZone: 'Asia/Kolkata',
-                year: 'numeric',
-                month: 'short',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: true,
-            });
-            lastRunElement.textContent = `${formatted} IST`;
-        }
-
-        // ── Sherlock Automation Master Control ───────────────
-        function updateAutomationUI(enabled, isRunning = false, customMessage = null) {
-            automationEnabled = Boolean(enabled);
-            const masterCard = document.getElementById('automationMasterCard');
-            const toggleBtn = document.getElementById('masterAutomationToggle');
-            const badge = document.getElementById('masterStatusBadge');
-            const badgeText = document.getElementById('masterBadgeText');
-            const desc = document.getElementById('masterStatusDesc');
-            const switchLabel = document.getElementById('masterSwitchStateLabel');
-            const scheduleStatus = document.getElementById('currentScheduleStatus');
-            const headerBadge = document.getElementById('headerStatusBadge');
-            const headerText = document.getElementById('headerStatusText');
-
-            if (automationEnabled) {
-                masterCard.classList.remove('state-paused');
-                toggleBtn.classList.add('switch-active');
-                toggleBtn.setAttribute('aria-checked', 'true');
-                badge.className = 'master-badge active';
-                badgeText.textContent = isRunning ? 'RUNNING' : 'AUTOMATION ON';
-                switchLabel.textContent = 'ACTIVE';
-                desc.innerHTML = customMessage || 'Sherlock automation is <strong>active</strong> — scheduled daily runs and background queues execute normally.';
-                scheduleStatus.textContent = isRunning ? 'Running' : 'Active';
-                scheduleStatus.style.color = 'var(--success-accent)';
-
-                headerBadge.className = 'status-badge';
-                headerText.textContent = isRunning ? 'Running' : 'Active';
-            } else {
-                masterCard.classList.add('state-paused');
-                toggleBtn.classList.remove('switch-active');
-                toggleBtn.setAttribute('aria-checked', 'false');
-                badge.className = 'master-badge paused';
-                badgeText.textContent = isRunning ? 'FINISHING RUN' : 'AUTOMATION OFF';
-                switchLabel.textContent = 'PAUSED';
-                desc.innerHTML = customMessage || (isRunning
-                    ? 'Sherlock Automation is <strong>OFF</strong>. Active execution is completing safely without abrupt interruption; future scheduled runs are paused.'
-                    : 'Sherlock Automation is <strong>OFF</strong> — automated triggers are paused. Dashboard view and manual on-demand checks remain accessible.');
-                scheduleStatus.textContent = isRunning ? 'Completing Task' : 'Paused';
-                scheduleStatus.style.color = 'var(--warning-accent)';
-
-                headerBadge.className = 'status-badge inactive';
-                headerText.textContent = isRunning ? 'Completing' : 'Paused';
-            }
-        }
-
-        async function toggleMasterAutomation() {
-            if (isAutomationLoading) return;
-
-            const toggleBtn = document.getElementById('masterAutomationToggle');
-            const targetState = !automationEnabled;
-
-            isAutomationLoading = true;
-            toggleBtn.classList.add('is-loading');
-
-            try {
-                const response = await fetch('/scheduler/automation/status', {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ enabled: targetState }),
-                });
-
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(errorText || `HTTP ${response.status}`);
-                }
-
-                const payload = await response.json();
-                const newEnabled = payload.enabled ?? targetState;
-                const isRunning = Boolean(payload.isRunning);
-                const message = payload.message || (newEnabled ? 'Sherlock Automation switched ON' : 'Sherlock Automation switched OFF');
-
-                updateAutomationUI(newEnabled, isRunning, message);
-                showToast(newEnabled ? 'Sherlock Automation resumed' : 'Sherlock Automation paused', 'success');
-                await fetchActivities();
-            } catch (error) {
-                showToast(`Failed to toggle automation: ${error.message}`, 'error');
-                // Revert to true backend state
-                await loadServerConfig();
-            } finally {
-                isAutomationLoading = false;
-                toggleBtn.classList.remove('is-loading');
-            }
-        }
-
-        // ── Saved Jobs Rendering ─────────────────────────────
-        function escapeHtml(value) {
-            return String(value ?? '')
+        // ── String & Escape Utilities ────────────────────────
+        function escapeStr(val) {
+            return String(val ?? '')
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
                 .replace(/>/g, '&gt;')
@@ -1779,15 +1114,93 @@
                 .replace(/'/g, '&#39;');
         }
 
-        function formatDurationHours(hoursRemaining) {
-            if (!Number.isFinite(hoursRemaining)) return '--';
-            if (hoursRemaining <= 0) return 'Expires soon';
-            return `${hoursRemaining.toFixed(1)}h left`;
+        // ── Timezone & Clock Helpers ─────────────────────────
+        function utcToIstParts(utcTime) {
+            const [h, m] = (utcTime || '09:00').split(':').map(Number);
+            const totalUtcMinutes = (h * 60) + m;
+            const totalIstMinutes = (totalUtcMinutes + 330 + 1440) % 1440;
+            const hour24 = Math.floor(totalIstMinutes / 60);
+            const minute = totalIstMinutes % 60;
+            const period = hour24 >= 12 ? 'PM' : 'AM';
+            const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
+
+            return {
+                hour: String(hour12).padStart(2, '0'),
+                minute: String(minute).padStart(2, '0'),
+                period,
+            };
         }
 
-        function formatJobTimestamp(iso) {
-            if (!iso) return '--';
-            return new Date(iso).toLocaleString('en-IN', {
+        function istPartsToUtc(hour12, minute, period) {
+            let hour24 = Number(hour12) % 12;
+            if (period === 'PM') hour24 += 12;
+
+            const totalIstMinutes = (hour24 * 60) + Number(minute);
+            const totalUtcMinutes = (totalIstMinutes - 330 + 1440) % 1440;
+            const utcHour = Math.floor(totalUtcMinutes / 60);
+            const utcMinute = totalUtcMinutes % 60;
+            return `${String(utcHour).padStart(2, '0')}:${String(utcMinute).padStart(2, '0')}`;
+        }
+
+        function buildDropdownOptions() {
+            const hourSelect = document.getElementById('triggerHour');
+            const minuteSelect = document.getElementById('triggerMinute');
+
+            hourSelect.innerHTML = '';
+            minuteSelect.innerHTML = '';
+
+            for (let h = 1; h <= 12; h++) {
+                const val = String(h).padStart(2, '0');
+                const opt = document.createElement('option');
+                opt.value = val;
+                opt.textContent = val;
+                hourSelect.appendChild(opt);
+            }
+
+            for (let m = 0; m <= 59; m++) {
+                const val = String(m).padStart(2, '0');
+                const opt = document.createElement('option');
+                opt.value = val;
+                opt.textContent = val;
+                minuteSelect.appendChild(opt);
+            }
+        }
+
+        function syncDropdownsFromUtc(utcTime) {
+            const ist = utcToIstParts(utcTime);
+            document.getElementById('triggerHour').value = ist.hour;
+            document.getElementById('triggerMinute').value = ist.minute;
+            document.getElementById('triggerPeriod').value = ist.period;
+            refreshConversionDisplay();
+        }
+
+        function getUtcFromDropdowns() {
+            const h = document.getElementById('triggerHour').value;
+            const m = document.getElementById('triggerMinute').value;
+            const p = document.getElementById('triggerPeriod').value;
+            return istPartsToUtc(h, m, p);
+        }
+
+        function refreshConversionDisplay() {
+            const utc = getUtcFromDropdowns();
+            const ist = utcToIstParts(utc);
+            document.getElementById('conversionNote').innerHTML = 
+                `Selected: <strong>${ist.hour}:${ist.minute} ${ist.period} IST</strong> (translates to ${utc} UTC)`;
+        }
+
+        function updateScheduleTable(utcTime) {
+            const ist = utcToIstParts(utcTime);
+            document.getElementById('dispCurrentSchedule').textContent = `${ist.hour}:${ist.minute} ${ist.period} IST`;
+        }
+
+        function updateLastRunTable(lastRunUtc) {
+            const target = document.getElementById('dispLastSuccessfulRun');
+            if (!lastRunUtc) {
+                target.textContent = 'Not run yet';
+                return;
+            }
+            const d = new Date(lastRunUtc);
+            target.textContent = d.toLocaleString('en-IN', {
                 timeZone: 'Asia/Kolkata',
                 month: 'short',
                 day: '2-digit',
@@ -1797,420 +1210,454 @@
             }) + ' IST';
         }
 
-        function formatJobLocation(job) {
-            const parts = [job.location, job.jobType].map((part) => String(part || '').trim()).filter(Boolean);
-            return parts.length > 0 ? parts.join(' · ') : 'Location not specified';
-        }
+        // ── Sherlock Master Automation Toggle ─────────────────
+        function syncAutomationUi(enabled, isRunning = false, customMsg = null) {
+            isAutomationEnabled = Boolean(enabled);
+            const masterBar = document.getElementById('masterBar');
+            const switchBtn = document.getElementById('masterSwitchBtn');
+            const statusBadge = document.getElementById('masterStatusBadge');
+            const statusDesc = document.getElementById('masterStatusDesc');
+            const stateLabel = document.getElementById('switchStateLabel');
+            const navTelemetry = document.getElementById('topNavTelemetry');
+            const navStatusText = document.getElementById('topNavStatusText');
+            const tableState = document.getElementById('dispSchedulerState');
 
-        function renderSavedJobs(payload) {
-            const list = document.getElementById('savedJobsList');
-            const count = document.getElementById('savedJobsCount');
-            const expiry = document.getElementById('savedJobsExpiry');
-            const jobs = Array.isArray(payload?.jobs) ? payload.jobs : [];
+            if (isAutomationEnabled) {
+                masterBar.classList.remove('state-paused');
+                switchBtn.classList.add('active');
+                switchBtn.setAttribute('aria-checked', 'true');
+                stateLabel.textContent = 'ON';
+                tableState.textContent = isRunning ? 'Running' : 'Active';
+                tableState.style.color = 'var(--blue-700)';
 
-            count.textContent = String(jobs.length);
+                if (isRunning) {
+                    statusBadge.className = 'badge-status running';
+                    statusBadge.textContent = 'RUNNING';
+                    navTelemetry.className = 'nav-telemetry running';
+                    navStatusText.textContent = 'Execution in Progress';
+                    statusDesc.textContent = customMsg || 'Sherlock automation is currently executing job discovery batches.';
+                } else {
+                    statusBadge.className = 'badge-status';
+                    statusBadge.textContent = 'ACTIVE';
+                    navTelemetry.className = 'nav-telemetry';
+                    navStatusText.textContent = 'Automation Active';
+                    statusDesc.textContent = customMsg || 'Sherlock automation is active — scheduled daily runs and background queues execute normally.';
+                }
+            } else {
+                masterBar.classList.add('state-paused');
+                switchBtn.classList.remove('active');
+                switchBtn.setAttribute('aria-checked', 'false');
+                stateLabel.textContent = 'OFF';
+                tableState.textContent = isRunning ? 'Finishing Active Run' : 'Paused';
+                tableState.style.color = 'var(--amber-text)';
 
-            if (jobs.length === 0) {
-                expiry.textContent = '--';
-                list.innerHTML = '<div class="empty-state">No saved jobs in current cache window. When Sherlock finds openings, they will appear here.</div>';
-                return;
-            }
-
-            const soonestExpiry = jobs
-                .map((job) => Number(job.hoursRemaining))
-                .filter((value) => Number.isFinite(value))
-                .reduce((min, value) => Math.min(min, value), Number.POSITIVE_INFINITY);
-
-            expiry.textContent = Number.isFinite(soonestExpiry) ? formatDurationHours(soonestExpiry) : '--';
-
-            list.innerHTML = jobs.map((job) => {
-                const title = escapeHtml(job.jobTitle || 'Untitled role');
-                const company = escapeHtml(job.company || 'Unknown company');
-                const source = escapeHtml(job.source || 'Aggregator');
-                const savedAt = formatJobTimestamp(job.savedAt);
-                const expires = formatDurationHours(Number(job.hoursRemaining));
-                const location = escapeHtml(formatJobLocation(job));
-                const salary = job.salary ? `<span class="job-pill salary">${escapeHtml(job.salary)}</span>` : '';
-                const keywordChips = Array.isArray(job.keywords)
-                    ? job.keywords.slice(0, 4).map((keyword) => `<span class="job-pill">${escapeHtml(keyword)}</span>`).join('')
-                    : '';
-
-                return `
-                    <article class="job-item">
-                        <div class="job-item-top">
-                            <div>
-                                <div class="job-title">${title}</div>
-                                <div class="job-company">${company} · <span style="color: var(--text-muted); font-size: 0.88rem;">${location}</span></div>
-                            </div>
-                            <span class="job-pill source">${source}</span>
-                        </div>
-                        <div class="job-meta">
-                            <span class="job-pill">Saved ${escapeHtml(savedAt)}</span>
-                            <span class="job-pill expiry">${escapeHtml(expires)}</span>
-                            ${salary}
-                            ${keywordChips}
-                        </div>
-                        <div class="job-actions">
-                            <div class="expires-note">Automatic cache retention: 24h from discovery</div>
-                            <a class="apply-link" href="${escapeHtml(job.link || '#')}" target="_blank" rel="noreferrer noopener">
-                                Apply Listing
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                                    <polyline points="7 7 17 7 17 17"></polyline>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-                `;
-            }).join('');
-        }
-
-        async function fetchSavedJobs() {
-            try {
-                const response = await fetch('/scheduler/jobs/today');
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                const payload = await response.json();
-                renderSavedJobs(payload);
-            } catch (_) {
-                const list = document.getElementById('savedJobsList');
-                const count = document.getElementById('savedJobsCount');
-                const expiry = document.getElementById('savedJobsExpiry');
-                if (count) count.textContent = '0';
-                if (expiry) expiry.textContent = '--';
-                if (list) {
-                    list.innerHTML = '<div class="empty-state">Unable to load cached positions from the server.</div>';
+                if (isRunning) {
+                    statusBadge.className = 'badge-status paused';
+                    statusBadge.textContent = 'FINISHING';
+                    navTelemetry.className = 'nav-telemetry paused';
+                    navStatusText.textContent = 'Completing Tasks';
+                    statusDesc.textContent = customMsg || 'Sherlock Automation is OFF. Active task is completing safely without abrupt interruption; subsequent runs paused.';
+                } else {
+                    statusBadge.className = 'badge-status paused';
+                    statusBadge.textContent = 'PAUSED';
+                    navTelemetry.className = 'nav-telemetry paused';
+                    navStatusText.textContent = 'Automation Paused';
+                    statusDesc.textContent = customMsg || 'Sherlock Automation is OFF — automated triggers are paused. Manual checks remain available.';
                 }
             }
         }
 
-        // ── Server Bootstrap & Config ────────────────────────
-        async function loadServerConfig() {
+        async function handleMasterToggle() {
+            if (isAutomationBusy) return;
+
+            const switchBtn = document.getElementById('masterSwitchBtn');
+            const nextState = !isAutomationEnabled;
+
+            isAutomationBusy = true;
+            switchBtn.classList.add('loading');
+
             try {
-                const response = await fetch('/scheduler/config');
-                if (!response.ok) return;
+                const res = await fetch('/scheduler/automation/status', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ enabled: nextState }),
+                });
 
-                const config = await response.json();
-                recipients = Array.isArray(config.recipients)
-                    ? config.recipients.map((email) => String(email).trim().toLowerCase()).filter(Boolean)
-                    : [];
-
-                if (config.time && /^\d{2}:\d{2}$/.test(config.time)) {
-                    schedulerTimeUtc = config.time;
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(text || `HTTP ${res.status}`);
                 }
 
-                lastSuccessfulRunUtc = config.lastSuccessfulRunUtc || null;
-
-                const enabled = typeof config.enabled === 'boolean' ? config.enabled : true;
-                const isRunning = Boolean(config.isRunning);
-                updateAutomationUI(enabled, isRunning, config.statusMessage || null);
-            } catch (_) {
-                showToast('Failed to load backend configuration', 'error');
+                const payload = await res.json();
+                const actualEnabled = payload.enabled ?? nextState;
+                const isRunning = Boolean(payload.isRunning);
+                syncAutomationUi(actualEnabled, isRunning, payload.message);
+                triggerToast(actualEnabled ? 'Sherlock Automation turned ON' : 'Sherlock Automation turned OFF', 'success');
+                await fetchActivities();
+            } catch (err) {
+                triggerToast(`Toggle failed: ${err.message}`, 'error');
+                await loadServerConfig();
+            } finally {
+                isAutomationBusy = false;
+                switchBtn.classList.remove('loading');
             }
         }
 
-        async function initializeApp() {
-            populateTimeDropdowns();
-            await loadServerConfig();
-            applyUtcTimeToIstUi(schedulerTimeUtc);
-            updateScheduleText(schedulerTimeUtc);
-            updateLastRunText(lastSuccessfulRunUtc);
-            renderRecipients();
-            startActivityPolling();
-            startSavedJobsPolling();
-            await fetchActivities();
-            await fetchSavedJobs();
-        }
-
-        async function updateSchedule() {
-            const time = getSelectedUtcFromIstUi();
+        // ── Schedule Save & Instant Trigger ──────────────────
+        async function handleSaveSchedule() {
+            const time = getUtcFromDropdowns();
 
             try {
-                const response = await fetch('/scheduler/config/time', {
+                const res = await fetch('/scheduler/config/time', {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ time }),
                 });
 
-                if (!response.ok) throw new Error('Unable to update schedule');
+                if (!res.ok) throw new Error('Failed to update schedule time');
 
-                const payload = await response.json();
-                schedulerTimeUtc = payload?.config?.time || time;
-                applyUtcTimeToIstUi(schedulerTimeUtc);
-                updateScheduleText(schedulerTimeUtc);
-                showToast('Schedule updated successfully', 'success');
+                const payload = await res.json();
+                currentSchedulerUtc = payload?.config?.time || time;
+                syncDropdownsFromUtc(currentSchedulerUtc);
+                updateScheduleTable(currentSchedulerUtc);
+                triggerToast('Schedule time updated successfully', 'success');
             } catch (err) {
-                showToast('Failed to update schedule: ' + err.message, 'error');
+                triggerToast(`Error: ${err.message}`, 'error');
             }
         }
 
-        async function triggerNow() {
-            const triggerBtn = document.getElementById('instantTriggerBtn');
-            const originalHtml = triggerBtn.innerHTML;
-            triggerBtn.disabled = true;
-            triggerBtn.innerHTML = `
-                <svg class="switch-spinner" style="display:inline-block;" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" opacity="0.3"></circle>
-                    <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
-                </svg>
-                Triggering...
-            `;
+        async function handleInstantTrigger() {
+            const btn = document.getElementById('btnRunNow');
+            const originalHtml = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = 'Triggering Run...';
 
             try {
-                const response = await fetch('/scheduler/trigger', {
-                    method: 'POST',
-                });
-
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(errorText || `HTTP ${response.status}`);
+                const res = await fetch('/scheduler/trigger', { method: 'POST' });
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(text || `HTTP ${res.status}`);
                 }
 
-                const payload = await response.json();
+                const payload = await res.json();
                 if (payload?.status === 'success') {
-                    showToast('Instant search started. Notifications sent if new unsent jobs are discovered.', 'success');
+                    triggerToast('Instant scrape initiated. Monitoring live logs...', 'success');
                     await fetchActivities();
                     await fetchSavedJobs();
                     setTimeout(async () => {
                         await loadServerConfig();
-                        updateLastRunText(lastSuccessfulRunUtc);
                         await fetchSavedJobs();
                     }, 3500);
                 } else if (payload?.status === 'busy') {
-                    showToast(payload?.message || 'Scheduler is already running', 'error');
+                    triggerToast(payload?.message || 'Scheduler is already running', 'error');
                 } else {
-                    showToast(payload?.message || 'Trigger execution failed', 'error');
+                    triggerToast(payload?.message || 'Execution failed', 'error');
                 }
-            } catch (error) {
-                showToast(`Failed to trigger search: ${error?.message || 'Unknown error'}`, 'error');
+            } catch (err) {
+                triggerToast(`Trigger failed: ${err.message}`, 'error');
             } finally {
-                triggerBtn.disabled = false;
-                triggerBtn.innerHTML = originalHtml;
+                btn.disabled = false;
+                btn.innerHTML = originalHtml;
             }
         }
 
-        // ── Console & Log Viewer ─────────────────────────────
-        function formatActivityTime(iso) {
-            if (!iso) return '--';
-            const date = new Date(iso);
-            return date.toLocaleTimeString('en-IN', {
-                timeZone: 'Asia/Kolkata',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true,
-            });
+        // ── Email Recipients ─────────────────────────────────
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
-        function renderActivities(payload) {
-            const stateEl = document.getElementById('activityState');
-            const lastRunEl = document.getElementById('activityLastRun');
-            const logBox = document.getElementById('activityLogBox');
+        async function handleAddRecipient() {
+            const input = document.getElementById('inputRecipientEmail');
+            const val = input.value.trim().toLowerCase();
 
-            const isRunning = Boolean(payload?.isRunning);
-            stateEl.textContent = isRunning ? 'Running' : 'Idle';
-            stateEl.className = `activity-state ${isRunning ? 'running' : 'idle'}`;
-
-            if (payload?.lastSuccessfulRunUtc) {
-                const dt = new Date(payload.lastSuccessfulRunUtc);
-                lastRunEl.textContent = dt.toLocaleString('en-IN', {
-                    timeZone: 'Asia/Kolkata',
-                    year: 'numeric',
-                    month: 'short',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: true,
-                }) + ' IST';
-            } else {
-                lastRunEl.textContent = 'Not run yet';
-            }
-
-            const entries = Array.isArray(payload?.entries) ? payload.entries : [];
-            if (entries.length === 0) {
-                logBox.innerHTML = '<div class="activity-empty">Waiting for scheduler activity...</div>';
+            if (!val || !isValidEmail(val)) {
+                triggerToast('Please provide a valid email address', 'error');
                 return;
             }
 
-            const shouldScroll = logBox.scrollTop + logBox.clientHeight >= logBox.scrollHeight - 50;
+            if (currentRecipients.includes(val)) {
+                triggerToast('Recipient already registered', 'error');
+                return;
+            }
 
-            logBox.innerHTML = entries
-                .slice(-150)
-                .map((entry) => {
-                    const level = (entry.level || 'info').toLowerCase();
-                    const time = formatActivityTime(entry.timestamp);
-                    const msg = escapeHtml(entry.message || '');
-                    return `
-                        <div class="activity-row">
-                            <span class="activity-time">[${time}]</span>
-                            <span class="activity-tag ${level}">${level.toUpperCase()}</span>
-                            <span class="activity-msg">${msg}</span>
-                        </div>
-                    `;
-                })
-                .join('');
+            try {
+                const res = await fetch('/scheduler/config/recipients', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: val }),
+                });
+
+                if (!res.ok) throw new Error('Could not add recipient');
+
+                const payload = await res.json();
+                currentRecipients = Array.isArray(payload?.config?.recipients)
+                    ? payload.config.recipients
+                    : [...currentRecipients, val];
+
+                input.value = '';
+                renderRecipients();
+                triggerToast('Recipient added', 'success');
+            } catch (err) {
+                triggerToast(err.message, 'error');
+            }
+        }
+
+        async function handleDeleteRecipient(email) {
+            try {
+                const res = await fetch(`/scheduler/config/recipients/${encodeURIComponent(email)}`, {
+                    method: 'DELETE',
+                });
+
+                if (!res.ok) throw new Error('Could not delete recipient');
+
+                const payload = await res.json();
+                currentRecipients = Array.isArray(payload?.config?.recipients)
+                    ? payload.config.recipients
+                    : currentRecipients.filter((r) => r !== email);
+
+                renderRecipients();
+                triggerToast('Recipient removed', 'success');
+            } catch (err) {
+                triggerToast(err.message, 'error');
+            }
+        }
+
+        function renderRecipients() {
+            const container = document.getElementById('recipientsListContainer');
+            const badge = document.getElementById('recipientCountBadge');
+
+            badge.textContent = `${currentRecipients.length} configured`;
+
+            if (currentRecipients.length === 0) {
+                container.innerHTML = '<div class="empty-placeholder">No recipient emails configured</div>';
+                return;
+            }
+
+            container.innerHTML = currentRecipients.map((email) => `
+                <div class="recipient-row">
+                    <span class="recipient-email">${escapeStr(email)}</span>
+                    <button class="btn btn-danger" onclick="handleDeleteRecipient('${escapeStr(email)}')">
+                        Remove
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // ── Console & Telemetry ──────────────────────────────
+        function renderActivities(payload) {
+            const box = document.getElementById('consoleLogBox');
+            const stateTag = document.getElementById('consoleEngineState');
+            const isRunning = Boolean(payload?.isRunning);
+
+            stateTag.textContent = isRunning ? 'Running' : 'Idle';
+            stateTag.className = `console-state-tag ${isRunning ? 'running' : ''}`;
+
+            const now = new Date();
+            document.getElementById('dispCurrentUtcTime').textContent = 
+                `${String(now.getUTCHours()).padStart(2, '0')}:${String(now.getUTCMinutes()).padStart(2, '0')}:${String(now.getUTCSeconds()).padStart(2, '0')}`;
+
+            const entries = Array.isArray(payload?.entries) ? payload.entries : [];
+            if (entries.length === 0) {
+                box.innerHTML = '<div class="console-empty">Awaiting scheduler execution logs...</div>';
+                return;
+            }
+
+            const shouldScroll = box.scrollTop + box.clientHeight >= box.scrollHeight - 40;
+
+            box.innerHTML = entries.slice(-150).map((entry) => {
+                const lvl = (entry.level || 'info').toLowerCase();
+                const timeStr = entry.timestamp ? new Date(entry.timestamp).toLocaleTimeString('en-IN', {
+                    timeZone: 'Asia/Kolkata',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false,
+                }) : '--:--:--';
+
+                return `
+                    <div class="console-row">
+                        <span class="console-time">[${timeStr}]</span>
+                        <span class="console-level ${lvl}">${lvl.toUpperCase()}</span>
+                        <span class="console-msg">${escapeStr(entry.message || '')}</span>
+                    </div>
+                `;
+            }).join('');
 
             if (shouldScroll) {
-                logBox.scrollTop = logBox.scrollHeight;
+                box.scrollTop = box.scrollHeight;
             }
         }
 
         async function fetchActivities() {
             try {
-                const response = await fetch('/scheduler/activities');
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                const payload = await response.json();
+                const res = await fetch('/scheduler/activities');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const payload = await res.json();
                 renderActivities(payload);
             } catch (_) {
-                const logBox = document.getElementById('activityLogBox');
-                const stateEl = document.getElementById('activityState');
-                if (stateEl) {
-                    stateEl.textContent = 'Unavailable';
-                    stateEl.className = 'activity-state idle';
-                }
-                if (logBox && logBox.children.length === 0) {
-                    logBox.innerHTML = '<div class="activity-empty">Live telemetry stream temporarily unavailable.</div>';
-                }
+                // Silently hold state on network interruption
             }
         }
 
-        function copyActivityLogs() {
-            const logBox = document.getElementById('activityLogBox');
-            if (!logBox) return;
-            const text = logBox.innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                showToast('Activity logs copied to clipboard', 'success');
+        function copyConsoleLogs() {
+            const box = document.getElementById('consoleLogBox');
+            if (!box) return;
+            navigator.clipboard.writeText(box.innerText).then(() => {
+                triggerToast('Logs copied to clipboard', 'success');
             }).catch(() => {
-                showToast('Failed to copy logs', 'error');
+                triggerToast('Clipboard copy failed', 'error');
             });
         }
 
-        function startActivityPolling() {
-            if (activityPollTimer) clearInterval(activityPollTimer);
-            activityPollTimer = setInterval(fetchActivities, 3000);
+        function clearConsoleView() {
+            const box = document.getElementById('consoleLogBox');
+            if (box) box.innerHTML = '<div class="console-empty">Logs view cleared locally.</div>';
         }
 
-        function startSavedJobsPolling() {
-            if (savedJobsPollTimer) clearInterval(savedJobsPollTimer);
-            savedJobsPollTimer = setInterval(fetchSavedJobs, 60000);
+        // ── Saved Jobs Explorer ──────────────────────────────
+        function formatDuration(hoursRemaining) {
+            if (!Number.isFinite(hoursRemaining)) return '--';
+            if (hoursRemaining <= 0) return 'Expired';
+            return `${hoursRemaining.toFixed(1)}h left`;
         }
 
-        // ── Recipients Management ────────────────────────────
-        async function addRecipient() {
-            const emailInput = document.getElementById('recipientEmail');
-            const email = emailInput.value.trim();
-            
-            if (!email) {
-                showToast('Please enter an email address', 'error');
+        function renderJobs(jobs) {
+            const container = document.getElementById('jobsListContainer');
+            const statCount = document.getElementById('statJobsCount');
+            const statExpiry = document.getElementById('statOldestExpiry');
+
+            statCount.textContent = String(rawJobsCache.length);
+
+            if (rawJobsCache.length > 0) {
+                const minExpiry = rawJobsCache
+                    .map((j) => Number(j.hoursRemaining))
+                    .filter(Number.isFinite)
+                    .reduce((min, val) => Math.min(min, val), Number.POSITIVE_INFINITY);
+                statExpiry.textContent = Number.isFinite(minExpiry) ? formatDuration(minExpiry) : '--';
+            } else {
+                statExpiry.textContent = '--';
+            }
+
+            if (!jobs || jobs.length === 0) {
+                container.innerHTML = '<div class="empty-placeholder">No matching positions in cache.</div>';
                 return;
             }
 
-            if (!isValidEmail(email)) {
-                showToast('Please enter a valid email address', 'error');
-                return;
-            }
+            container.innerHTML = jobs.map((job) => {
+                const title = escapeStr(job.jobTitle || 'Position Opening');
+                const company = escapeStr(job.company || 'Company not stated');
+                const location = escapeStr(job.location || 'Location unspecified');
+                const source = escapeStr(job.source || 'Aggregator');
+                const expiry = formatDuration(Number(job.hoursRemaining));
+                const salary = job.salary ? `<span class="pill salary">${escapeStr(job.salary)}</span>` : '';
+                const keywordPills = Array.isArray(job.keywords) 
+                    ? job.keywords.slice(0, 3).map((k) => `<span class="pill">${escapeStr(k)}</span>`).join('')
+                    : '';
 
-            const normalizedEmail = email.toLowerCase();
-
-            if (recipients.includes(normalizedEmail)) {
-                showToast('This recipient is already added', 'error');
-                return;
-            }
-
-            try {
-                const response = await fetch('/scheduler/config/recipients', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: normalizedEmail }),
-                });
-
-                if (!response.ok) throw new Error('Unable to add recipient');
-
-                const payload = await response.json();
-                recipients = Array.isArray(payload?.config?.recipients)
-                    ? payload.config.recipients
-                    : recipients;
-
-                emailInput.value = '';
-                renderRecipients();
-                showToast('Recipient added successfully', 'success');
-            } catch (_) {
-                showToast('Failed to add recipient', 'error');
-            }
-        }
-
-        async function deleteRecipient(email) {
-            try {
-                const response = await fetch(`/scheduler/config/recipients/${encodeURIComponent(email)}`, {
-                    method: 'DELETE',
-                });
-
-                if (!response.ok) throw new Error('Unable to remove recipient');
-
-                const payload = await response.json();
-                recipients = Array.isArray(payload?.config?.recipients)
-                    ? payload.config.recipients
-                    : recipients.filter(r => r !== email);
-
-                renderRecipients();
-                showToast('Recipient removed', 'success');
-            } catch (_) {
-                showToast('Failed to remove recipient', 'error');
-            }
-        }
-
-        function renderRecipients() {
-            const container = document.getElementById('recipientsList');
-            const count = document.getElementById('recipientCount');
-            const badge = document.getElementById('recipientCountBadge');
-
-            count.textContent = String(recipients.length);
-            badge.textContent = `${recipients.length} configured`;
-
-            if (recipients.length === 0) {
-                container.innerHTML = '<div class="empty-state">No recipients added yet</div>';
-                return;
-            }
-
-            container.innerHTML = recipients.map(email => {
-                const initials = email.slice(0, 2).toUpperCase();
                 return `
-                    <div class="recipient-item">
-                        <div class="recipient-info">
-                            <div class="recipient-avatar">${initials}</div>
-                            <span class="recipient-email">${escapeHtml(email)}</span>
+                    <div class="job-card">
+                        <div class="job-card-top">
+                            <div>
+                                <div class="job-card-title">${title}</div>
+                                <div class="job-card-sub">${company} · ${location}</div>
+                            </div>
+                            <span class="pill source">${source}</span>
                         </div>
-                        <button class="btn-delete" onclick="deleteRecipient('${escapeHtml(email)}')" title="Delete recipient">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                            </svg>
-                            Delete
-                        </button>
+                        <div class="job-pills">
+                            <span class="pill expiry">${expiry}</span>
+                            ${salary}
+                            ${keywordPills}
+                        </div>
+                        <div class="job-card-footer">
+                            <span>Auto-purges after 24 hours</span>
+                            <a class="apply-btn" href="${escapeStr(job.link || '#')}" target="_blank" rel="noreferrer noopener">
+                                Apply Listing &rarr;
+                            </a>
+                        </div>
                     </div>
                 `;
             }).join('');
         }
 
-        function isValidEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
+        function handleJobFilter(searchTerm) {
+            const query = (searchTerm || '').trim().toLowerCase();
+            if (!query) {
+                renderJobs(rawJobsCache);
+                return;
+            }
+
+            const filtered = rawJobsCache.filter((j) => {
+                const matchTitle = (j.jobTitle || '').toLowerCase().includes(query);
+                const matchCompany = (j.company || '').toLowerCase().includes(query);
+                const matchKeywords = Array.isArray(j.keywords) && j.keywords.some((k) => String(k).toLowerCase().includes(query));
+                const matchSource = (j.source || '').toLowerCase().includes(query);
+                return matchTitle || matchCompany || matchKeywords || matchSource;
+            });
+
+            renderJobs(filtered);
         }
 
-        // Enter key in email input
-        document.getElementById('recipientEmail').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') addRecipient();
+        async function fetchSavedJobs() {
+            try {
+                const res = await fetch('/scheduler/jobs/today');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const payload = await res.json();
+                rawJobsCache = Array.isArray(payload?.jobs) ? payload.jobs : [];
+                handleJobFilter(document.getElementById('jobFilterInput').value);
+            } catch (_) {
+                // Ignore transient network errors
+            }
+        }
+
+        // ── Bootstrap & Server Sync ──────────────────────────
+        async function loadServerConfig() {
+            try {
+                const res = await fetch('/scheduler/config');
+                if (!res.ok) return;
+
+                const cfg = await res.json();
+                currentRecipients = Array.isArray(cfg.recipients) ? cfg.recipients : [];
+                if (cfg.time && /^\d{2}:\d{2}$/.test(cfg.time)) {
+                    currentSchedulerUtc = cfg.time;
+                }
+                currentLastRunUtc = cfg.lastSuccessfulRunUtc || null;
+
+                const enabled = typeof cfg.enabled === 'boolean' ? cfg.enabled : true;
+                const isRunning = Boolean(cfg.isRunning);
+
+                syncDropdownsFromUtc(currentSchedulerUtc);
+                updateScheduleTable(currentSchedulerUtc);
+                updateLastRunTable(currentLastRunUtc);
+                renderRecipients();
+                syncAutomationUi(enabled, isRunning, cfg.statusMessage);
+            } catch (_) {
+                triggerToast('Failed to connect with scheduler backend', 'error');
+            }
+        }
+
+        async function initDashboard() {
+            buildDropdownOptions();
+            await loadServerConfig();
+            await fetchActivities();
+            await fetchSavedJobs();
+
+            activityPollHandle = setInterval(fetchActivities, 2500);
+            jobsPollHandle = setInterval(fetchSavedJobs, 45000);
+        }
+
+        // Listeners
+        document.getElementById('inputRecipientEmail').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleAddRecipient();
         });
 
-        // Time dropdown updates
         document.addEventListener('change', (e) => {
-            const targetId = e.target && e.target.id;
-            if (targetId === 'triggerHour' || targetId === 'triggerMinute' || targetId === 'triggerPeriod') {
-                updateConversionHint();
+            const id = e.target && e.target.id;
+            if (id === 'triggerHour' || id === 'triggerMinute' || id === 'triggerPeriod') {
+                refreshConversionDisplay();
             }
         });
 
-        // Initialize on load
-        window.addEventListener('DOMContentLoaded', initializeApp);
+        window.addEventListener('DOMContentLoaded', initDashboard);
     </script>
 </body>
 </html>
