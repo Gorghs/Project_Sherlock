@@ -5,36 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'><circle cx='11' cy='11' r='8'/><line x1='21' y1='21' x2='16.65' y2='16.65' stroke='%232563eb' stroke-width='2.5'/></svg>">
     <title>Sherlock — Automated Job Aggregation Engine</title>
+    <script>
+        (function() {
+            try {
+                var savedTheme = localStorage.getItem('sherlock_theme');
+                var theme = (savedTheme === 'light') ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
     <style>
         :root {
-            /* Pure Blue Light Theme — Zero Gradients */
+            /* Default Dark Theme — Pure Solid Slate Engineering Palette */
+            --bg-body: #0b0f19;
+            --bg-card: #111827;
+            --bg-subtle: #172136;
+            --bg-muted: #1e293d;
+            --bg-hover: #1b263b;
+
+            /* Crisp 1px Borders */
+            --border-light: #1f293d;
+            --border-medium: #27354f;
+            --border-dark: #374766;
+
+            /* Pure Solid Tech Blue */
+            --blue-600: #3b82f6;
+            --blue-700: #2563eb;
+            --blue-800: #1d4ed8;
+            --blue-50: rgba(59, 130, 246, 0.12);
+            --blue-100: rgba(59, 130, 246, 0.20);
+            --blue-200: rgba(59, 130, 246, 0.35);
+            --blue-text: #60a5fa;
+
+            /* Typography */
+            --text-title: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #64748b;
+            --text-subtle: #475569;
+            --text-white: #ffffff;
+
+            /* Functional Status Colors */
+            --green-bg: #052e16;
+            --green-border: rgba(34, 197, 94, 0.30);
+            --green-text: #4ade80;
+            --green-solid: #22c55e;
+
+            --amber-bg: #451a03;
+            --amber-border: rgba(245, 158, 11, 0.30);
+            --amber-text: #fbbf24;
+            --amber-solid: #f59e0b;
+
+            --red-bg: #450a0a;
+            --red-border: rgba(239, 68, 68, 0.30);
+            --red-text: #f87171;
+            --red-solid: #ef4444;
+
+            /* Console Engine Canvas */
+            --console-bg: #060911;
+            --console-border: #131b2e;
+            --console-text: #cbd5e1;
+            --console-time: #64748b;
+
+            /* Fonts & Metrics */
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+            --radius-full: 9999px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ── Clean Light Theme Overrides ───────────────────── */
+        [data-theme="light"] {
             --bg-body: #f8fafc;
             --bg-card: #ffffff;
             --bg-subtle: #f1f5f9;
             --bg-muted: #e2e8f0;
             --bg-hover: #f8fafc;
 
-            /* Borders */
             --border-light: #e2e8f0;
             --border-medium: #cbd5e1;
             --border-dark: #94a3b8;
 
-            /* Pure Solid Tech Blue */
             --blue-600: #2563eb;
             --blue-700: #1d4ed8;
             --blue-800: #1e40af;
             --blue-50: #eff6ff;
             --blue-100: #dbeafe;
             --blue-200: #bfdbfe;
+            --blue-text: #1d4ed8;
 
-            /* Typography */
             --text-title: #0f172a;
             --text-body: #334155;
             --text-muted: #64748b;
             --text-subtle: #94a3b8;
             --text-white: #ffffff;
 
-            /* Functional Status Colors */
             --green-bg: #f0fdf4;
             --green-border: #bbf7d0;
             --green-text: #166534;
@@ -50,15 +120,29 @@
             --red-text: #991b1b;
             --red-solid: #dc2626;
 
-            /* Fonts & Metrics */
-            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-            --radius-sm: 4px;
-            --radius-md: 6px;
-            --radius-lg: 8px;
-            --radius-full: 9999px;
+            --console-bg: #0f172a;
+            --console-border: #1e293d;
+            --console-text: #cbd5e1;
+            --console-time: #64748b;
+
             --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+        }
+
+        /* ── Scrollbars ────────────────────────────────────── */
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-card);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-medium);
+            border-radius: var(--radius-sm);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--border-dark);
         }
 
         * {
@@ -126,7 +210,7 @@
             text-transform: uppercase;
             padding: 2px 6px;
             background-color: var(--blue-50);
-            color: var(--blue-700);
+            color: var(--blue-text);
             border: 1px solid var(--blue-200);
             border-radius: var(--radius-sm);
         }
@@ -134,7 +218,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 16px;
         }
 
         .nav-link {
@@ -177,8 +261,34 @@
         .nav-telemetry.running {
             border-color: var(--blue-200);
             background-color: var(--blue-50);
-            color: var(--blue-700);
+            color: var(--blue-text);
         }
+
+        .theme-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-md);
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-medium);
+            color: var(--text-body);
+            cursor: pointer;
+            transition: background-color 150ms, border-color 150ms, color 150ms;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: var(--bg-hover);
+            color: var(--text-title);
+            border-color: var(--border-dark);
+        }
+
+        .theme-icon-sun { display: block; }
+        .theme-icon-moon { display: none; }
+
+        [data-theme="light"] .theme-icon-sun { display: none; }
+        [data-theme="light"] .theme-icon-moon { display: block; }
 
         .status-dot {
             width: 7px;
@@ -250,7 +360,7 @@
 
         .badge-status.running {
             background-color: var(--blue-50);
-            color: var(--blue-700);
+            color: var(--blue-text);
             border-color: var(--blue-200);
         }
 
@@ -488,6 +598,11 @@
             transition: border-color 120ms;
         }
 
+        .form-select option {
+            background-color: var(--bg-card);
+            color: var(--text-title);
+        }
+
         .form-select:focus,
         .form-input:focus {
             border-color: var(--blue-600);
@@ -512,7 +627,7 @@
         }
 
         .conversion-note strong {
-            color: var(--blue-700);
+            color: var(--blue-text);
         }
 
         /* ── Key-Value Summary List ────────────────────────── */
@@ -608,9 +723,9 @@
         }
 
         .console-box {
-            background-color: #0f172a;
-            color: #e2e8f0;
-            border: 1px solid #1e293b;
+            background-color: var(--console-bg);
+            color: var(--console-text);
+            border: 1px solid var(--console-border);
             border-radius: var(--radius-md);
             padding: 12px;
             height: 260px;
@@ -629,7 +744,7 @@
         }
 
         .console-time {
-            color: #64748b;
+            color: var(--console-time);
             flex-shrink: 0;
             font-feature-settings: "tnum" 1;
         }
@@ -755,7 +870,7 @@
 
         .pill.source {
             background-color: var(--blue-50);
-            color: var(--blue-700);
+            color: var(--blue-text);
             border-color: var(--blue-200);
         }
 
@@ -894,6 +1009,25 @@
                 <a href="/docs" target="_blank" class="nav-link">API Docs</a>
                 <a href="/swg" target="_blank" class="nav-link">Swagger</a>
                 <a href="/graphql" target="_blank" class="nav-link">GraphQL</a>
+                <div class="nav-divider"></div>
+                <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle color theme" title="Toggle theme (Dark / Light)">
+                    <!-- Sun icon (shown in dark theme) -->
+                    <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <!-- Moon icon (shown in light theme) -->
+                    <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
             </div>
         </div>
     </header>
@@ -1228,7 +1362,7 @@
                 switchBtn.setAttribute('aria-checked', 'true');
                 stateLabel.textContent = 'ON';
                 tableState.textContent = isRunning ? 'Running' : 'Active';
-                tableState.style.color = 'var(--blue-700)';
+                tableState.style.color = 'var(--blue-text)';
 
                 if (isRunning) {
                     statusBadge.className = 'badge-status running';
@@ -1633,6 +1767,17 @@
             } catch (_) {
                 triggerToast('Failed to connect with scheduler backend', 'error');
             }
+        }
+
+        // ── Theme Switcher ───────────────────────────────────
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+            const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', nextTheme);
+            try {
+                localStorage.setItem('sherlock_theme', nextTheme);
+            } catch (_) {}
+            triggerToast(`Switched to ${nextTheme === 'dark' ? 'Dark' : 'Light'} theme`, 'success');
         }
 
         async function initDashboard() {

@@ -80,8 +80,8 @@ export class SchedulerController {
   })
   @ApiResponse({ status: 200, description: 'Scheduler time updated' })
   updateTime(@Body() body: { time?: string }) {
-    if (!body?.time || !/^\d{2}:\d{2}$/.test(body.time)) {
-      throw new BadRequestException('Invalid time. Expected HH:mm (UTC).');
+    if (!body?.time || !/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(body.time)) {
+      throw new BadRequestException('Invalid time. Expected HH:mm (UTC) with hours 00-23 and minutes 00-59.');
     }
 
     const config = this.schedulerService.updateTime(body.time);
@@ -98,7 +98,10 @@ export class SchedulerController {
   })
   @ApiResponse({ status: 200, description: 'Recipients updated' })
   setRecipients(@Body() body: { recipients?: string[] }) {
-    const config = this.schedulerService.setRecipients(Array.isArray(body?.recipients) ? body.recipients : []);
+    if (!Array.isArray(body?.recipients)) {
+      throw new BadRequestException('Recipients must be an array of strings');
+    }
+    const config = this.schedulerService.setRecipients(body.recipients);
     return {
       success: true,
       config,
@@ -114,6 +117,10 @@ export class SchedulerController {
   addRecipient(@Body() body: { email?: string }) {
     if (!body?.email) {
       throw new BadRequestException('Email is required');
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(body.email.trim())) {
+      throw new BadRequestException('Invalid email format');
     }
 
     const config = this.schedulerService.addRecipient(body.email);

@@ -128,9 +128,12 @@ export class JobSchedulerService implements OnModuleInit, OnModuleDestroy {
     await this.executeDaily();
   }
 
-  async executeDaily() {
+  async executeDaily(options?: { force?: boolean }) {
     const config = this.runtimeConfigService.getConfig();
-    if (!config.enabled) return;
+    if (!config.enabled && !options?.force) {
+      this.logger.log('Scheduler run skipped: automation is disabled');
+      return;
+    }
 
     if (this.isRunning) {
       this.logger.log('Scheduler run skipped: previous run still in progress');
@@ -741,9 +744,11 @@ export class JobSchedulerService implements OnModuleInit, OnModuleDestroy {
       };
     }
 
+    this.activityLogService.info('Manual trigger initiated by user');
+
     // Run in background so API responds immediately and UI does not timeout.
     setTimeout(() => {
-      this.executeDaily().catch((error: any) => {
+      this.executeDaily({ force: true }).catch((error: any) => {
         this.logger.error(`Manual trigger background run failed: ${error.message}`, error.stack);
       });
     }, 0);

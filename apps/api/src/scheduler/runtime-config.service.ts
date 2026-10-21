@@ -137,7 +137,7 @@ export class RuntimeConfigService {
           ? value.enabled
           : this.configService.get<boolean>('scheduler.enabled', true),
       time: this.normalizeTime(String(value?.time ?? '09:00')),
-      recipients: [...new Set([...fileRecipients, ...envRecipients])],
+      recipients: Array.isArray(value?.recipients) ? fileRecipients : envRecipients,
       lastExecutionSlotUtc: typeof value?.lastExecutionSlotUtc === 'string' ? value.lastExecutionSlotUtc : undefined,
       lastSuccessfulRunUtc: typeof value?.lastSuccessfulRunUtc === 'string' ? value.lastSuccessfulRunUtc : undefined,
     };
@@ -155,7 +155,9 @@ export class RuntimeConfigService {
   private normalizeTime(value: string): string {
     if (/^\d{1,2}:\d{2}$/.test(value)) {
       const [h, m] = value.split(':').map((part) => Number(part));
-      return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+      if (!Number.isNaN(h) && !Number.isNaN(m) && h >= 0 && h <= 23 && m >= 0 && m <= 59) {
+        return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+      }
     }
 
     // Support cron style input: "m h * * *"
