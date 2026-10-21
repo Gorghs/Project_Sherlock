@@ -8,7 +8,7 @@ import { EmailService } from '../notifications/email.service';
 import { JobFilterService } from './job-filter.service';
 import { SentJobsDatabase } from '../db/sent-jobs.database';
 import { ScraperInputDto, DescriptionFormat, JobPostDto, mapStringToSite } from '@sherlock/models';
-import { RuntimeConfigService } from './runtime-config.service';
+import { RuntimeConfigService, RuntimeSchedulerConfig } from './runtime-config.service';
 import { TOP_INDIAN_COMPANY_CAREER_DOMAINS } from './india-top-company-domains';
 import { SubagentMemoryService, SubagentDailyMetric } from './subagent-memory.service';
 import { ActivityLogService } from './activity-log.service';
@@ -792,6 +792,50 @@ export class JobSchedulerService implements OnModuleInit, OnModuleDestroy {
     return this.sourceReliabilityService.getSnapshot();
   }
 
+  updateEnabled(enabled: boolean): RuntimeSchedulerConfig {
+    return this.runtimeConfigService.updateEnabled(enabled);
+  }
+
+  setAutomationStatus(enabled: boolean): {
+    enabled: boolean;
+    isRunning: boolean;
+    message: string;
+    statusMessage: string;
+    config: RuntimeSchedulerConfig;
+  } {
+    const config = this.runtimeConfigService.updateEnabled(enabled);
+
+    if (enabled) {
+      this.logger.log('Sherlock Automation enabled by master control');
+      this.activityLogService.info('Sherlock Automation switched ON: Scheduled triggers and background jobs active');
+      const message = 'Automation ON (scheduled runs active)';
+      return {
+        enabled: true,
+        isRunning: this.isRunning,
+        message,
+        statusMessage: message,
+        config,
+      };
+    } else {
+      this.logger.log('Sherlock Automation disabled by master control');
+      const message = this.isRunning
+        ? 'Automation OFF (active task completing safely; scheduled runs paused)'
+        : 'Automation OFF (scheduled runs paused)';
+      this.activityLogService.warn(
+        this.isRunning
+          ? 'Sherlock Automation switched OFF: In-progress run will complete safely; future scheduled runs paused'
+          : 'Sherlock Automation switched OFF: All automated runs paused',
+      );
+      return {
+        enabled: false,
+        isRunning: this.isRunning,
+        message,
+        statusMessage: message,
+        config,
+      };
+    }
+  }
+
   /**
    * Get scheduler status and stats
    */
@@ -801,14 +845,24 @@ export class JobSchedulerService implements OnModuleInit, OnModuleDestroy {
     totalJobsSent: number;
     lastExecution?: string;
     lastSuccessfulRunUtc?: string;
+    isRunning: boolean;
+    statusMessage: string;
+    message: string;
   } {
     const config = this.runtimeConfigService.getConfig();
+    const statusMessage = !config.enabled
+      ? (this.isRunning ? 'Automation OFF (active task completing safely)' : 'Automation OFF (scheduled runs paused)')
+      : (this.isRunning ? 'Automation ON (execution in progress)' : 'Automation ON (scheduled runs active)');
+
     return {
       enabled: config.enabled,
       scheduledTime: config.time,
       totalJobsSent: this.sentJobsDb.getCount(),
       lastExecution: this.lastExecutionSlotUtc,
       lastSuccessfulRunUtc: this.lastSuccessfulRunUtc,
+      isRunning: this.isRunning,
+      statusMessage,
+      message: statusMessage,
     };
   }
 }

@@ -19,7 +19,7 @@ export class SchedulerController {
   @Get('config')
   @ApiOperation({
     summary: 'Get scheduler dashboard config',
-    description: 'Returns normalized scheduler time and recipient list',
+    description: 'Returns normalized scheduler time, recipient list, and automation status',
   })
   @ApiResponse({ status: 200, description: 'Scheduler config retrieved' })
   getConfig() {
@@ -28,11 +28,49 @@ export class SchedulerController {
 
     return {
       enabled: status.enabled,
+      isRunning: status.isRunning,
+      statusMessage: status.statusMessage,
       time: runtimeConfig.time,
       rawSchedule: runtimeConfig.time,
       recipients: runtimeConfig.recipients,
       lastSuccessfulRunUtc: status.lastSuccessfulRunUtc ?? null,
     };
+  }
+
+  /**
+   * PUT /scheduler/automation/status
+   * Sherlock Master Automation Toggle (ON/OFF)
+   */
+  @Put('automation/status')
+  @ApiOperation({
+    summary: 'Update Sherlock Automation master status',
+    description: 'Enables or disables Sherlock automated execution with persistence and safe handling of running jobs',
+  })
+  @ApiResponse({ status: 200, description: 'Automation status updated successfully' })
+  updateAutomationStatus(@Body() body: { enabled?: boolean }) {
+    if (typeof body?.enabled !== 'boolean') {
+      throw new BadRequestException('Field "enabled" must be a boolean (true or false)');
+    }
+
+    const result = this.schedulerService.setAutomationStatus(body.enabled);
+    return {
+      success: true,
+      ...result,
+    };
+  }
+
+  /**
+   * PUT /scheduler/config/automation
+   * Alias for master automation control
+   */
+  @Put('config/automation')
+  @ApiOperation({
+    summary: 'Update Sherlock Automation master status (config alias)',
+    description: 'Enables or disables Sherlock automated execution',
+  })
+  @ApiResponse({ status: 200, description: 'Automation status updated successfully' })
+  updateConfigAutomation(@Body() body: { enabled?: boolean }) {
+    return this.updateAutomationStatus(body);
   }
 
   @Put('config/time')

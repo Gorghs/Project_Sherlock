@@ -3,9 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="data:,">
-    <title>Job Search Platform - Dashboard</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234f46e5'><circle cx='11' cy='11' r='8'/><line x1='21' y1='21' x2='16.65' y2='16.65' stroke='%234f46e5' stroke-width='2'/></svg>">
+    <title>Sherlock — Automated Job Aggregation Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Light Theme Canvas & Surface */
+            --bg-canvas: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-subtle: #f1f5f9;
+            --bg-muted: #e2e8f0;
+            --bg-hover: #f8fafc;
+
+            /* Text Hierarchy */
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --text-subtle: #94a3b8;
+            --text-inverse: #ffffff;
+
+            /* Primary Brand Accent (Indigo / Royal Blue) */
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eef2ff;
+            --primary-border: #c7d2fe;
+            --primary-focus: rgba(79, 70, 229, 0.25);
+
+            /* Semantic Success */
+            --success-bg: #ecfdf5;
+            --success-border: #a7f3d0;
+            --success-text: #065f46;
+            --success-accent: #10b981;
+
+            /* Semantic Warning */
+            --warning-bg: #fffbeb;
+            --warning-border: #fde68a;
+            --warning-text: #92400e;
+            --warning-accent: #f59e0b;
+
+            /* Semantic Danger */
+            --danger-bg: #fef2f2;
+            --danger-border: #fecdd3;
+            --danger-text: #9f1239;
+            --danger-accent: #ef4444;
+
+            /* Neutral Borders */
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            --border-dark: #94a3b8;
+
+            /* Layered Shadows */
+            --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+            --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.07), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+            --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
+
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+
+            /* Radii */
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --radius-full: 9999px;
+
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,14 +82,16 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000;
-            color: #e0e0e0;
+            font-family: var(--font-sans);
+            background-color: var(--bg-canvas);
+            color: var(--text-secondary);
             overflow-x: hidden;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Grid background */
+        /* Subtle modern light grid pattern */
         body::before {
             content: '';
             position: fixed;
@@ -29,25 +100,28 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
-                linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent);
-            background-size: 50px 50px;
+                radial-gradient(var(--border-medium) 1px, transparent 1px);
+            background-size: 28px 28px;
+            opacity: 0.45;
             pointer-events: none;
             z-index: -1;
         }
 
+        /* ── Header ────────────────────────────────────────── */
         header {
-            padding: 2rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.1rem 0;
+            border-bottom: 1px solid var(--border-light);
             position: sticky;
             top: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 100;
+            box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
         }
 
         .header-content {
-            max-width: 1400px;
+            max-width: 1360px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
@@ -55,230 +129,787 @@
             align-items: center;
         }
 
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .brand-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary) 0%, #312e81 100%);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(79, 70, 229, 0.35);
+        }
+
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.35rem;
             font-weight: 700;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, #fff, #999);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .logo-tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.15rem 0.5rem;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--primary-border);
         }
 
         .header-nav {
             display: flex;
-            gap: 2rem;
+            gap: 1.75rem;
             align-items: center;
         }
 
         .header-nav a {
             text-decoration: none;
-            color: #b0b0b0;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            transition: color var(--transition-fast);
+            padding: 0.35rem 0;
+            position: relative;
         }
 
         .header-nav a:hover {
-            color: #fff;
+            color: var(--text-primary);
+        }
+
+        .header-nav a.active {
+            color: var(--primary);
+            font-weight: 600;
         }
 
         .status-badge {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.85rem;
-            color: #4ade80;
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 0.35rem 0.8rem;
+            border-radius: var(--radius-full);
+            background: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid var(--success-border);
+            transition: all var(--transition-base);
+        }
+
+        .status-badge.inactive {
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            border-color: var(--border-medium);
         }
 
         .status-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #4ade80;
+            background: var(--success-accent);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
             animation: pulse 2s infinite;
         }
 
+        .status-badge.inactive .status-dot {
+            background: var(--text-subtle);
+            box-shadow: none;
+            animation: none;
+        }
+
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.15); }
         }
 
+        /* ── Main Container ────────────────────────────────── */
         main {
-            max-width: 1400px;
+            max-width: 1360px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 2.5rem 2rem 5rem 2rem;
         }
 
+        /* ── Hero Section ──────────────────────────────────── */
         .hero {
-            text-align: center;
-            margin-bottom: 5rem;
+            text-align: left;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .hero-left {
+            max-width: 700px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--primary-light);
+            border: 1px solid var(--primary-border);
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            margin-bottom: 0.75rem;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.25rem;
             font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-            line-height: 1.2;
+            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            line-height: 1.25;
+            margin-bottom: 0.5rem;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            color: #888;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.02rem;
+            color: var(--text-muted);
+            line-height: 1.5;
         }
 
+        .hero-metrics {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .metric-pill {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            padding: 0.6rem 1.1rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-xs);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-pill-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-subtle);
+        }
+
+        .metric-pill-val {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-feature-settings: "tnum" 1;
+        }
+
+        /* ── Automation Master Control Card ─────────────────── */
+        .automation-master-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 2rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .automation-master-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--success-accent);
+            transition: background var(--transition-base);
+        }
+
+        .automation-master-card.state-paused::before {
+            background: var(--warning-accent);
+        }
+
+        .master-toggle-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .master-toggle-header {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .master-toggle-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            margin: 0;
+        }
+
+        .master-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.22rem 0.65rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: all var(--transition-base);
+        }
+
+        .master-badge.active {
+            background: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid var(--success-border);
+        }
+
+        .master-badge.active .indicator-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--success-accent);
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+            animation: pulse 2s infinite;
+        }
+
+        .master-badge.paused {
+            background: var(--warning-bg);
+            color: var(--warning-text);
+            border: 1px solid var(--warning-border);
+        }
+
+        .master-badge.paused .indicator-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--warning-accent);
+        }
+
+        .master-toggle-desc {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .master-toggle-desc strong {
+            color: var(--text-primary);
+        }
+
+        /* Tactile Master Switch Component */
+        .master-switch-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .master-switch-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .switch-control {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+        }
+
+        .switch-control:focus-visible .switch-track {
+            box-shadow: 0 0 0 3px var(--primary-focus);
+        }
+
+        .switch-track {
+            position: relative;
+            display: inline-block;
+            width: 62px;
+            height: 34px;
+            background-color: var(--border-medium);
+            border-radius: var(--radius-full);
+            transition: background-color var(--transition-base), box-shadow var(--transition-base);
+        }
+
+        .switch-control.switch-active .switch-track {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+        }
+
+        .switch-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 28px;
+            height: 28px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(15, 23, 42, 0.18);
+            transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .switch-control.switch-active .switch-thumb {
+            transform: translateX(28px);
+        }
+
+        .switch-spinner {
+            width: 16px;
+            height: 16px;
+            display: none;
+            animation: spin 0.8s linear infinite;
+            color: var(--primary);
+        }
+
+        .switch-control.is-loading .switch-spinner {
+            display: block;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ── Grid Layout ───────────────────────────────────── */
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 3rem;
+            gap: 1.75rem;
+            margin-bottom: 2rem;
         }
 
+        /* ── Modern Card Surface ───────────────────────────── */
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: border-color var(--transition-base), box-shadow var(--transition-base);
         }
 
         .card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+            border-color: var(--border-medium);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
         }
 
         .card h2 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-badge {
+            font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            background: var(--bg-subtle);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+            padding: 0.18rem 0.55rem;
+            border-radius: var(--radius-full);
+            font-feature-settings: "tnum" 1;
         }
 
         .card-divider {
             height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: 2rem 0;
+            background: var(--border-light);
+            margin: 1.5rem 0;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.6rem;
-            font-size: 0.9rem;
-            color: #aaa;
+            margin-bottom: 0.45rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input[type="time"],
-        .form-group input[type="email"] {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .form-group input[type="time"]:focus,
-        .form-group input[type="email"]:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+            letter-spacing: 0.05em;
         }
 
         .time-controls {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 0.8rem;
+            gap: 0.65rem;
         }
 
-        .time-controls select {
+        .time-controls select,
+        .form-input {
             width: 100%;
-            padding: 0.8rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 1rem;
+            padding: 0.75rem 0.9rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all var(--transition-fast);
+            font-feature-settings: "tnum" 1;
         }
 
-        .time-controls select:focus {
+        .time-controls select:focus,
+        .form-input:focus {
             outline: none;
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-focus);
         }
 
         .schedule-note {
             font-size: 0.85rem;
-            color: #888;
-            margin-top: 0.7rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-top: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
         }
 
+        /* ── Inline Action Input ───────────────────────────── */
+        .inline-form {
+            display: flex;
+            gap: 0.65rem;
+        }
+
+        .input-icon-wrapper {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 0.85rem;
+            color: var(--text-subtle);
+            pointer-events: none;
+        }
+
+        .input-with-icon {
+            padding-left: 2.35rem !important;
+        }
+
+        /* ── Buttons ───────────────────────────────────────── */
         .button-group {
             display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
         }
 
         .btn {
             flex: 1;
-            padding: 0.9rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 500;
+            padding: 0.75rem 1.25rem;
+            border: 1px solid transparent;
+            border-radius: var(--radius-md);
+            font-family: var(--font-sans);
+            font-size: 0.88rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            transition: all var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            text-decoration: none;
+        }
+
+        .btn:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px var(--primary-focus);
         }
 
         .btn-primary {
-            background: #fff;
-            color: #000;
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: var(--shadow-xs);
         }
 
         .btn-primary:hover {
-            background: #f0f0f0;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
         }
 
         .btn-secondary {
-            background: transparent;
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: var(--bg-surface);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-medium);
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: var(--bg-subtle);
+            color: var(--text-primary);
+            border-color: var(--border-dark);
         }
 
+        .btn-inline {
+            flex: 0 0 auto;
+            white-space: nowrap;
+            padding: 0.75rem 1.25rem;
+        }
+
+        /* ── Display Table / Key-Values ─────────────────────── */
+        .config-display {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 1.1rem 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .config-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.55rem 0;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            font-size: 0.88rem;
+        }
+
+        .config-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .config-item:first-child {
+            padding-top: 0;
+        }
+
+        .config-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .config-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-feature-settings: "tnum" 1;
+        }
+
+        /* ── Recipients List ───────────────────────────────── */
         .recipients-list {
-            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 0.25rem;
         }
 
+        .recipient-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.65rem 0.9rem;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            transition: border-color var(--transition-fast);
+        }
+
+        .recipient-item:hover {
+            border-color: var(--border-medium);
+        }
+
+        .recipient-info {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .recipient-avatar {
+            width: 26px;
+            height: 26px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .recipient-email {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .btn-delete {
+            background: transparent;
+            color: var(--text-subtle);
+            border: 1px solid transparent;
+            border-radius: var(--radius-sm);
+            padding: 0.3rem 0.5rem;
+            cursor: pointer;
+            font-size: 0.78rem;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .btn-delete:hover {
+            background: var(--danger-bg);
+            color: var(--danger-accent);
+            border-color: var(--danger-border);
+        }
+
+        /* ── Agent Activity Console ────────────────────────── */
         .activity-card {
             grid-column: 1 / -1;
         }
 
+        .activity-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .activity-state {
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.15rem 0.55rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .activity-state.running {
+            background: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid var(--success-border);
+        }
+
+        .activity-state.idle {
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            border: 1px solid var(--border-light);
+        }
+
+        .activity-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .activity-log-box {
+            background: #0f172a;
+            color: #e2e8f0;
+            border: 1px solid #1e293b;
+            border-radius: var(--radius-md);
+            padding: 1.1rem;
+            min-height: 220px;
+            max-height: 320px;
+            overflow-y: auto;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            line-height: 1.6;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .activity-row {
+            margin-bottom: 0.3rem;
+            white-space: pre-wrap;
+            word-break: break-word;
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .activity-time {
+            color: #64748b;
+            font-feature-settings: "tnum" 1;
+            flex-shrink: 0;
+        }
+
+        .activity-tag {
+            font-weight: 700;
+            font-size: 0.72rem;
+            border-radius: 3px;
+            padding: 0.05rem 0.35rem;
+            flex-shrink: 0;
+        }
+
+        .activity-tag.info {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+        }
+
+        .activity-tag.warn {
+            background: rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
+        }
+
+        .activity-tag.error {
+            background: rgba(248, 113, 113, 0.15);
+            color: #f87171;
+        }
+
+        .activity-msg {
+            color: #cbd5e1;
+            word-break: break-word;
+        }
+
+        .activity-empty {
+            color: #64748b;
+            font-style: italic;
+        }
+
+        /* ── Saved Jobs Section ────────────────────────────── */
         .jobs-card {
             grid-column: 1 / -1;
         }
@@ -289,7 +920,13 @@
             align-items: center;
             gap: 1rem;
             flex-wrap: wrap;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-note {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
         }
 
         .jobs-summary {
@@ -300,25 +937,29 @@
         }
 
         .jobs-stat {
-            padding: 1rem 1.1rem;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.07);
+            padding: 1.1rem 1.25rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
         }
 
         .jobs-stat-label {
             display: block;
-            color: #8f9aa8;
-            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-size: 0.76rem;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 0.35rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
         }
 
         .jobs-stat-value {
-            font-size: 1.2rem;
+            font-size: 1.35rem;
             font-weight: 700;
-            color: #f3f4f6;
+            color: var(--text-primary);
+            font-feature-settings: "tnum" 1;
         }
 
         .jobs-list {
@@ -327,315 +968,389 @@
         }
 
         .job-item {
-            padding: 1.1rem;
-            border-radius: 12px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.35rem 1.5rem;
+            border-radius: var(--radius-md);
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-xs);
             display: grid;
-            gap: 0.75rem;
+            gap: 0.85rem;
+            transition: all var(--transition-fast);
+        }
+
+        .job-item:hover {
+            border-color: var(--border-medium);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
         }
 
         .job-item-top {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
             gap: 1rem;
             flex-wrap: wrap;
         }
 
         .job-title {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            margin-bottom: 0.2rem;
         }
 
         .job-company {
-            color: #cfd8e3;
-            font-size: 0.92rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .job-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem 0.75rem;
-            color: #99a4b3;
-            font-size: 0.84rem;
+            gap: 0.5rem;
         }
 
         .job-pill {
             display: inline-flex;
             align-items: center;
             gap: 0.35rem;
-            padding: 0.35rem 0.7rem;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #d9e3ef;
+            padding: 0.28rem 0.7rem;
+            border-radius: var(--radius-full);
             font-size: 0.78rem;
-            letter-spacing: 0.3px;
+            font-weight: 500;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-feature-settings: "tnum" 1;
+        }
+
+        .job-pill.source {
+            background: #f5f3ff;
+            color: #6d28d9;
+            border-color: #ddd6fe;
+            font-weight: 600;
+        }
+
+        .job-pill.salary {
+            background: var(--success-bg);
+            color: var(--success-text);
+            border-color: var(--success-border);
+            font-weight: 600;
+        }
+
+        .job-pill.expiry {
+            background: var(--warning-bg);
+            color: var(--warning-text);
+            border-color: var(--warning-border);
         }
 
         .job-actions {
             display: flex;
             justify-content: space-between;
-            gap: 0.75rem;
+            gap: 1rem;
             flex-wrap: wrap;
             align-items: center;
+            border-top: 1px solid var(--bg-subtle);
+            padding-top: 0.75rem;
+        }
+
+        .expires-note {
+            color: var(--text-subtle);
+            font-size: 0.82rem;
         }
 
         .apply-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            background: #fff;
-            color: #000;
+            gap: 0.35rem;
+            padding: 0.55rem 1.1rem;
+            border-radius: var(--radius-md);
+            background: var(--primary);
+            color: #ffffff;
             text-decoration: none;
-            font-weight: 700;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all var(--transition-fast);
         }
 
         .apply-link:hover {
+            background: var(--primary-hover);
             transform: translateY(-1px);
-            box-shadow: 0 10px 24px rgba(255, 255, 255, 0.12);
-        }
-
-        .expires-note {
-            color: #9aa5b5;
-            font-size: 0.82rem;
-        }
-
-        .activity-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-            font-size: 0.85rem;
-            color: #bbb;
-            flex-wrap: wrap;
-        }
-
-        .activity-state {
-            font-weight: 600;
-        }
-
-        .activity-state.running {
-            color: #4ade80;
-        }
-
-        .activity-state.idle {
-            color: #888;
-        }
-
-        .activity-log-box {
-            background: #0a0b0f;
-            color: #d7e0ea;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 10px;
-            padding: 0.9rem;
-            min-height: 220px;
-            max-height: 320px;
-            overflow-y: auto;
-            font-family: Consolas, 'Courier New', monospace;
-            font-size: 0.78rem;
-            line-height: 1.45;
-        }
-
-        .activity-row {
-            margin-bottom: 0.35rem;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-
-        .activity-row.info {
-            color: #d7e0ea;
-        }
-
-        .activity-row.warn {
-            color: #ffd666;
-        }
-
-        .activity-row.error {
-            color: #ff9a9a;
-        }
-
-        .activity-empty {
-            color: #8f9aa8;
-        }
-
-        .recipient-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            margin-bottom: 0.8rem;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .recipient-email {
-            font-size: 0.95rem;
-            color: #ccc;
-        }
-
-        .btn-delete {
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            padding: 0.4rem 0.8rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        .btn-delete:hover {
-            background: rgba(239, 68, 68, 0.2);
-            border-color: rgba(239, 68, 68, 0.4);
+            box-shadow: var(--shadow-sm);
         }
 
         .empty-state {
             text-align: center;
-            padding: 2rem;
-            color: #666;
+            padding: 2.5rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            background: var(--bg-subtle);
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--border-medium);
         }
 
+        /* ── Modern Toast Notification System ─────────────── */
+        .toast-container {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .toast {
+            pointer-events: auto;
+            min-width: 280px;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--primary);
+            padding: 0.9rem 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            animation: toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .toast.success {
+            border-left-color: var(--success-accent);
+        }
+
+        .toast.error {
+            border-left-color: var(--danger-accent);
+        }
+
+        .toast-text {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-subtle);
+            cursor: pointer;
+            padding: 0.2rem;
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .toast-close:hover {
+            color: var(--text-primary);
+        }
+
+        @keyframes toastSlideUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Backward compatible message banner inside cards */
         .success-message {
-            background: rgba(74, 222, 128, 0.1);
-            border: 1px solid rgba(74, 222, 128, 0.3);
-            color: #4ade80;
-            padding: 1rem;
-            border-radius: 8px;
+            background: var(--success-bg);
+            border: 1px solid var(--success-border);
+            color: var(--success-text);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-md);
             margin-bottom: 1rem;
             display: none;
-            animation: slideIn 0.3s ease;
+            font-size: 0.88rem;
+            font-weight: 500;
         }
 
         .success-message.show {
             display: block;
         }
 
-        .config-display {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
+        .success-message.error {
+            background: var(--danger-bg);
+            border-color: var(--danger-border);
+            color: var(--danger-text);
         }
 
-        .config-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .config-item:last-child {
-            border-bottom: none;
-        }
-
-        .config-label {
-            color: #888;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .config-value {
-            color: #4ade80;
-            font-weight: 500;
-        }
-
-        .section-note {
-            color: #8f9aa8;
-            font-size: 0.9rem;
-            margin-top: 0.35rem;
-        }
-
-        .jobs-refresh-btn {
-            flex: 0 0 auto;
-            min-width: 140px;
-        }
-
+        /* ── Footer ────────────────────────────────────────── */
         footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--border-light);
             padding: 2rem 0;
             text-align: center;
-            color: #666;
-            margin-top: 5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 4rem;
         }
 
-        @media (max-width: 768px) {
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        /* ── Responsive Mobile Media Queries ───────────────── */
+        @media (max-width: 900px) {
             .content-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .automation-master-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .master-switch-wrapper {
+                align-self: flex-start;
             }
 
             .jobs-summary {
                 grid-template-columns: 1fr;
             }
 
-            .jobs-refresh-btn {
-                width: 100%;
-            }
-
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 1.85rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            main {
+                padding: 1.5rem 1rem 3rem 1rem;
             }
 
             .header-content {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.75rem;
+                padding: 0 1rem;
             }
 
             .header-nav {
+                width: 100%;
+                justify-content: space-between;
+                font-size: 0.85rem;
+            }
+
+            .inline-form {
                 flex-direction: column;
-                gap: 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .time-controls {
+                grid-template-columns: 1fr 1fr 1fr;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Toast Feedback System -->
+    <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+    <!-- Sticky Navigation Header -->
     <header>
         <div class="header-content">
-            <div class="logo">JOB SEARCH</div>
+            <a href="#home" class="brand-container">
+                <div class="brand-logo-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </div>
+                <div class="logo">
+                    SHERLOCK
+                    <span class="logo-tag">AUTOMATION</span>
+                </div>
+            </a>
             <div class="header-nav">
-                <a href="#home">Dashboard</a>
+                <a href="#home" class="active">Dashboard</a>
                 <a href="#today-jobs">Today's Jobs</a>
-                <div class="status-badge">
+                <div class="status-badge" id="headerStatusBadge">
                     <span class="status-dot"></span>
-                    <span>Active</span>
+                    <span id="headerStatusText">Active</span>
                 </div>
             </div>
         </div>
     </header>
 
-    <main>
+    <main id="home">
+        <!-- Hero Section -->
         <section class="hero">
-            <h1>Dashboard Control</h1>
-            <p>Manage your daily job search triggers and notification recipients</p>
+            <div class="hero-left">
+                <div class="hero-badge">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    Job Intelligence Engine
+                </div>
+                <h1>Sherlock Automation Hub</h1>
+                <p>Manage continuous multi-source job aggregation, automated delivery schedules, and recipient dispatches.</p>
+            </div>
+            <div class="hero-metrics">
+                <div class="metric-pill">
+                    <span class="metric-pill-label">Sources Active</span>
+                    <span class="metric-pill-val">160+ Boards</span>
+                </div>
+                <div class="metric-pill">
+                    <span class="metric-pill-label">Filter Pipeline</span>
+                    <span class="metric-pill-val">AI Scoring</span>
+                </div>
+            </div>
         </section>
+
+        <!-- Sherlock ON/OFF Master Control Card -->
+        <div class="automation-master-card" id="automationMasterCard">
+            <div class="master-toggle-info">
+                <div class="master-toggle-header">
+                    <div class="master-badge active" id="masterStatusBadge">
+                        <span class="indicator-dot"></span>
+                        <span id="masterBadgeText">AUTOMATION ON</span>
+                    </div>
+                    <h2 class="master-toggle-title">Sherlock Automation</h2>
+                </div>
+                <p class="master-toggle-desc" id="masterStatusDesc">
+                    Sherlock automation is active — scheduled daily runs and background queues execute normally.
+                </p>
+            </div>
+
+            <div class="master-switch-wrapper">
+                <span class="master-switch-label" id="masterSwitchStateLabel">ACTIVE</span>
+                <button type="button" 
+                        role="switch" 
+                        aria-checked="true" 
+                        id="masterAutomationToggle" 
+                        class="switch-control switch-active"
+                        onclick="toggleMasterAutomation()"
+                        aria-label="Toggle Sherlock Automation Master Engine">
+                    <span class="switch-track">
+                        <span class="switch-thumb">
+                            <svg class="switch-spinner" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" opacity="0.3"></circle>
+                                <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                            </svg>
+                        </span>
+                    </span>
+                </button>
+            </div>
+        </div>
 
         <div class="content-grid">
             <!-- Scheduler Configuration Card -->
             <div class="card">
-                <h2>Schedule Settings</h2>
+                <div class="card-header-flex">
+                    <h2>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        Schedule Settings
+                    </h2>
+                    <span class="card-badge" id="scheduleCardBadge">Daily (IST)</span>
+                </div>
                 <div class="success-message" id="schedulerMessage"></div>
                 
                 <div class="form-group">
@@ -648,18 +1363,37 @@
                             <option value="PM">PM</option>
                         </select>
                     </div>
-                    <div class="schedule-note" id="scheduleConversion">Selected: 02:30 PM IST</div>
+                    <div class="schedule-note" id="scheduleConversion">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <span>Selected: 02:30 PM IST</span>
+                    </div>
                 </div>
 
-                <p style="font-size: 0.9rem; color: #666; margin: 1.5rem 0;">
-                    Set your preferred India time.
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin: 1.25rem 0 0 0;">
+                    Configured in India Standard Time (IST) and automatically translated to server UTC ticks.
                 </p>
 
                 <div class="card-divider"></div>
 
                 <div class="button-group">
-                    <button class="btn btn-primary" onclick="updateSchedule()">Update Schedule</button>
-                    <button class="btn btn-secondary" id="instantTriggerBtn" onclick="triggerNow()">Check Now</button>
+                    <button class="btn btn-primary" onclick="updateSchedule()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Save Schedule
+                    </button>
+                    <button class="btn btn-secondary" id="instantTriggerBtn" onclick="triggerNow()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Check Now
+                    </button>
                 </div>
 
                 <div class="config-display">
@@ -668,27 +1402,45 @@
                         <span class="config-value" id="currentSchedule">02:30 PM IST</span>
                     </div>
                     <div class="config-item">
-                        <span class="config-label">Status</span>
-                        <span class="config-value">Active</span>
+                        <span class="config-label">Automation Status</span>
+                        <span class="config-value" id="currentScheduleStatus">Active</span>
                     </div>
                     <div class="config-item">
-                        <span class="config-label">Last Run</span>
+                        <span class="config-label">Last Successful Run</span>
                         <span class="config-value" id="lastRun">Not run yet</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Recipients Management Card -->
+            <!-- Email Recipients Card -->
             <div class="card">
-                <h2>Email Recipients</h2>
+                <div class="card-header-flex">
+                    <h2>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        Email Recipients
+                    </h2>
+                    <span class="card-badge" id="recipientCountBadge">0 configured</span>
+                </div>
                 <div class="success-message" id="recipientMessage"></div>
 
                 <div class="form-group">
                     <label for="recipientEmail">Add Recipient Email</label>
-                    <input type="email" id="recipientEmail" placeholder="user@example.com">
+                    <div class="inline-form">
+                        <div class="input-icon-wrapper">
+                            <svg class="input-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="4"></circle>
+                                <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+                            </svg>
+                            <input type="email" id="recipientEmail" class="form-input input-with-icon" placeholder="colleague@domain.com">
+                        </div>
+                        <button class="btn btn-primary btn-inline" onclick="addRecipient()">
+                            Add Recipient
+                        </button>
+                    </div>
                 </div>
-
-                <button class="btn btn-primary" onclick="addRecipient()">Add Recipient</button>
 
                 <div class="card-divider"></div>
 
@@ -704,60 +1456,124 @@
                 </div>
             </div>
 
-            <div class="card activity-card">
-                <h2>Current Agent Activity</h2>
+            <!-- Current Agent Activity Card -->
+            <div class="card activity-card" id="activities">
+                <div class="card-header-flex">
+                    <h2>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="4 17 10 11 4 5"></polyline>
+                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                        </svg>
+                        Live Agent Console
+                    </h2>
+                    <div class="activity-toolbar">
+                        <button class="btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;" onclick="copyActivityLogs()">
+                            Copy Logs
+                        </button>
+                    </div>
+                </div>
                 <div class="activity-meta">
                     <div>Run State: <span id="activityState" class="activity-state idle">Idle</span></div>
-                    <div>Last Successful Run: <span id="activityLastRun">Not run yet</span></div>
+                    <div>Last Successful Run: <span id="activityLastRun" style="font-weight: 600; color: var(--text-primary); font-feature-settings: 'tnum' 1;">Not run yet</span></div>
                 </div>
-                <div id="activityLogBox" class="activity-log-box">
+                <div id="activityLogBox" class="activity-log-box" aria-live="polite">
                     <div class="activity-empty">Waiting for scheduler activity...</div>
                 </div>
             </div>
 
+            <!-- Today's Saved Jobs Card -->
             <div class="card jobs-card" id="today-jobs">
                 <div class="jobs-header">
                     <div>
-                        <h2>Today's Saved Jobs</h2>
-                        <div class="section-note">These are the jobs already found and stored in the frontend cache. Entries expire automatically after 24 hours.</div>
+                        <h2>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                            Today's Saved Jobs
+                        </h2>
+                        <div class="section-note">Discovered positions cached locally. Listings automatically expire after 24 hours.</div>
                     </div>
-                    <button class="btn btn-secondary jobs-refresh-btn" onclick="fetchSavedJobs()">Refresh List</button>
+                    <button class="btn btn-secondary jobs-refresh-btn" onclick="fetchSavedJobs()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                        Refresh List
+                    </button>
                 </div>
 
                 <div class="jobs-summary">
                     <div class="jobs-stat">
-                        <span class="jobs-stat-label">Jobs visible</span>
+                        <span class="jobs-stat-label">Jobs Visible</span>
                         <span class="jobs-stat-value" id="savedJobsCount">0</span>
                     </div>
                     <div class="jobs-stat">
-                        <span class="jobs-stat-label">Retention</span>
-                        <span class="jobs-stat-value">24h</span>
+                        <span class="jobs-stat-label">Cache Retention</span>
+                        <span class="jobs-stat-value">24 Hours</span>
                     </div>
                     <div class="jobs-stat">
-                        <span class="jobs-stat-label">Oldest expiry</span>
+                        <span class="jobs-stat-label">Oldest Expiry</span>
                         <span class="jobs-stat-value" id="savedJobsExpiry">--</span>
                     </div>
                 </div>
 
                 <div id="savedJobsList" class="jobs-list">
-                    <div class="empty-state">No saved jobs yet. When the scheduler finds jobs, they will appear here without running a new search.</div>
+                    <div class="empty-state">No saved jobs in current cache window. When Sherlock finds openings, they will appear here.</div>
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>Job Search Platform &copy; 2026. All rights reserved.</p>
+        <p>Sherlock Multi-Source Job Discovery Engine &copy; 2026. Built with NestJS, TypeScript, and clean architecture.</p>
     </footer>
 
     <script>
-        // Initialize application
+        // State variables
         let recipients = [];
         let schedulerTimeUtc = '09:00';
         let lastSuccessfulRunUtc = null;
+        let automationEnabled = true;
+        let isAutomationLoading = false;
         let activityPollTimer = null;
         let savedJobsPollTimer = null;
 
+        // ── Toast Notification System ────────────────────────
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <span class="toast-text">${escapeHtml(message)}</span>
+                <button class="toast-close" onclick="this.parentElement.remove()" aria-label="Close notification">&times;</button>
+            `;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                setTimeout(() => toast.remove(), 260);
+            }, 4000);
+        }
+
+        // Backward compatibility for existing showMessage calls
+        function showMessage(elementId, message, type = 'success') {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+                element.className = `success-message show ${type === 'error' ? 'error' : ''}`;
+                setTimeout(() => {
+                    element.classList.remove('show');
+                }, 3500);
+            }
+            showToast(message, type);
+        }
+
+        // ── Time & Timezone Utilities ────────────────────────
         function format12Hour(hour24, minute) {
             const period = hour24 >= 12 ? 'PM' : 'AM';
             const hour12 = hour24 % 12 === 0 ? 12 : hour24 % 12;
@@ -765,7 +1581,7 @@
         }
 
         function utcToIstParts(utcTime) {
-            const [h, m] = utcTime.split(':').map(Number);
+            const [h, m] = (utcTime || '09:00').split(':').map(Number);
             const utcMinutes = (h * 60) + m;
             const istMinutes = (utcMinutes + 330 + 1440) % 1440;
             const istHour24 = Math.floor(istMinutes / 60);
@@ -835,7 +1651,14 @@
         function updateConversionHint() {
             const utc = getSelectedUtcFromIstUi();
             const ist = utcToIstParts(utc);
-            document.getElementById('scheduleConversion').textContent = `Selected: ${ist.hour}:${ist.minute} ${ist.period} IST`;
+            document.getElementById('scheduleConversion').innerHTML = `
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>Selected: <strong>${ist.hour}:${ist.minute} ${ist.period} IST</strong> (translates to ${utc} UTC)</span>
+            `;
         }
 
         function updateScheduleText(utcTime) {
@@ -863,6 +1686,90 @@
             lastRunElement.textContent = `${formatted} IST`;
         }
 
+        // ── Sherlock Automation Master Control ───────────────
+        function updateAutomationUI(enabled, isRunning = false, customMessage = null) {
+            automationEnabled = Boolean(enabled);
+            const masterCard = document.getElementById('automationMasterCard');
+            const toggleBtn = document.getElementById('masterAutomationToggle');
+            const badge = document.getElementById('masterStatusBadge');
+            const badgeText = document.getElementById('masterBadgeText');
+            const desc = document.getElementById('masterStatusDesc');
+            const switchLabel = document.getElementById('masterSwitchStateLabel');
+            const scheduleStatus = document.getElementById('currentScheduleStatus');
+            const headerBadge = document.getElementById('headerStatusBadge');
+            const headerText = document.getElementById('headerStatusText');
+
+            if (automationEnabled) {
+                masterCard.classList.remove('state-paused');
+                toggleBtn.classList.add('switch-active');
+                toggleBtn.setAttribute('aria-checked', 'true');
+                badge.className = 'master-badge active';
+                badgeText.textContent = isRunning ? 'RUNNING' : 'AUTOMATION ON';
+                switchLabel.textContent = 'ACTIVE';
+                desc.innerHTML = customMessage || 'Sherlock automation is <strong>active</strong> — scheduled daily runs and background queues execute normally.';
+                scheduleStatus.textContent = isRunning ? 'Running' : 'Active';
+                scheduleStatus.style.color = 'var(--success-accent)';
+
+                headerBadge.className = 'status-badge';
+                headerText.textContent = isRunning ? 'Running' : 'Active';
+            } else {
+                masterCard.classList.add('state-paused');
+                toggleBtn.classList.remove('switch-active');
+                toggleBtn.setAttribute('aria-checked', 'false');
+                badge.className = 'master-badge paused';
+                badgeText.textContent = isRunning ? 'FINISHING RUN' : 'AUTOMATION OFF';
+                switchLabel.textContent = 'PAUSED';
+                desc.innerHTML = customMessage || (isRunning
+                    ? 'Sherlock Automation is <strong>OFF</strong>. Active execution is completing safely without abrupt interruption; future scheduled runs are paused.'
+                    : 'Sherlock Automation is <strong>OFF</strong> — automated triggers are paused. Dashboard view and manual on-demand checks remain accessible.');
+                scheduleStatus.textContent = isRunning ? 'Completing Task' : 'Paused';
+                scheduleStatus.style.color = 'var(--warning-accent)';
+
+                headerBadge.className = 'status-badge inactive';
+                headerText.textContent = isRunning ? 'Completing' : 'Paused';
+            }
+        }
+
+        async function toggleMasterAutomation() {
+            if (isAutomationLoading) return;
+
+            const toggleBtn = document.getElementById('masterAutomationToggle');
+            const targetState = !automationEnabled;
+
+            isAutomationLoading = true;
+            toggleBtn.classList.add('is-loading');
+
+            try {
+                const response = await fetch('/scheduler/automation/status', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ enabled: targetState }),
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(errorText || `HTTP ${response.status}`);
+                }
+
+                const payload = await response.json();
+                const newEnabled = payload.enabled ?? targetState;
+                const isRunning = Boolean(payload.isRunning);
+                const message = payload.message || (newEnabled ? 'Sherlock Automation switched ON' : 'Sherlock Automation switched OFF');
+
+                updateAutomationUI(newEnabled, isRunning, message);
+                showToast(newEnabled ? 'Sherlock Automation resumed' : 'Sherlock Automation paused', 'success');
+                await fetchActivities();
+            } catch (error) {
+                showToast(`Failed to toggle automation: ${error.message}`, 'error');
+                // Revert to true backend state
+                await loadServerConfig();
+            } finally {
+                isAutomationLoading = false;
+                toggleBtn.classList.remove('is-loading');
+            }
+        }
+
+        // ── Saved Jobs Rendering ─────────────────────────────
         function escapeHtml(value) {
             return String(value ?? '')
                 .replace(/&/g, '&amp;')
@@ -873,20 +1780,13 @@
         }
 
         function formatDurationHours(hoursRemaining) {
-            if (!Number.isFinite(hoursRemaining)) {
-                return '--';
-            }
-
-            if (hoursRemaining <= 0) {
-                return 'Expires soon';
-            }
-
+            if (!Number.isFinite(hoursRemaining)) return '--';
+            if (hoursRemaining <= 0) return 'Expires soon';
             return `${hoursRemaining.toFixed(1)}h left`;
         }
 
         function formatJobTimestamp(iso) {
             if (!iso) return '--';
-
             return new Date(iso).toLocaleString('en-IN', {
                 timeZone: 'Asia/Kolkata',
                 month: 'short',
@@ -912,7 +1812,7 @@
 
             if (jobs.length === 0) {
                 expiry.textContent = '--';
-                list.innerHTML = '<div class="empty-state">No saved jobs yet. When the scheduler finds jobs, they will appear here without running a new search.</div>';
+                list.innerHTML = '<div class="empty-state">No saved jobs in current cache window. When Sherlock finds openings, they will appear here.</div>';
                 return;
             }
 
@@ -926,11 +1826,11 @@
             list.innerHTML = jobs.map((job) => {
                 const title = escapeHtml(job.jobTitle || 'Untitled role');
                 const company = escapeHtml(job.company || 'Unknown company');
-                const source = escapeHtml(job.source || 'unknown');
+                const source = escapeHtml(job.source || 'Aggregator');
                 const savedAt = formatJobTimestamp(job.savedAt);
                 const expires = formatDurationHours(Number(job.hoursRemaining));
                 const location = escapeHtml(formatJobLocation(job));
-                const salary = job.salary ? `<span class="job-pill">Salary: ${escapeHtml(job.salary)}</span>` : '';
+                const salary = job.salary ? `<span class="job-pill salary">${escapeHtml(job.salary)}</span>` : '';
                 const keywordChips = Array.isArray(job.keywords)
                     ? job.keywords.slice(0, 4).map((keyword) => `<span class="job-pill">${escapeHtml(keyword)}</span>`).join('')
                     : '';
@@ -940,20 +1840,25 @@
                         <div class="job-item-top">
                             <div>
                                 <div class="job-title">${title}</div>
-                                <div class="job-company">${company}</div>
+                                <div class="job-company">${company} · <span style="color: var(--text-muted); font-size: 0.88rem;">${location}</span></div>
                             </div>
-                            <div class="job-pill">Source: ${source}</div>
+                            <span class="job-pill source">${source}</span>
                         </div>
                         <div class="job-meta">
-                            <span class="job-pill">${location}</span>
                             <span class="job-pill">Saved ${escapeHtml(savedAt)}</span>
-                            <span class="job-pill">${escapeHtml(expires)}</span>
+                            <span class="job-pill expiry">${escapeHtml(expires)}</span>
                             ${salary}
                             ${keywordChips}
                         </div>
                         <div class="job-actions">
-                            <div class="expires-note">Auto-removes after 24 hours from saved time.</div>
-                            <a class="apply-link" href="${escapeHtml(job.link || '#')}" target="_blank" rel="noreferrer noopener">Apply link</a>
+                            <div class="expires-note">Automatic cache retention: 24h from discovery</div>
+                            <a class="apply-link" href="${escapeHtml(job.link || '#')}" target="_blank" rel="noreferrer noopener">
+                                Apply Listing
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                </svg>
+                            </a>
                         </div>
                     </article>
                 `;
@@ -963,10 +1868,7 @@
         async function fetchSavedJobs() {
             try {
                 const response = await fetch('/scheduler/jobs/today');
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const payload = await response.json();
                 renderSavedJobs(payload);
             } catch (_) {
@@ -976,11 +1878,12 @@
                 if (count) count.textContent = '0';
                 if (expiry) expiry.textContent = '--';
                 if (list) {
-                    list.innerHTML = '<div class="empty-state">Unable to load saved jobs from the backend.</div>';
+                    list.innerHTML = '<div class="empty-state">Unable to load cached positions from the server.</div>';
                 }
             }
         }
 
+        // ── Server Bootstrap & Config ────────────────────────
         async function loadServerConfig() {
             try {
                 const response = await fetch('/scheduler/config');
@@ -996,8 +1899,12 @@
                 }
 
                 lastSuccessfulRunUtc = config.lastSuccessfulRunUtc || null;
+
+                const enabled = typeof config.enabled === 'boolean' ? config.enabled : true;
+                const isRunning = Boolean(config.isRunning);
+                updateAutomationUI(enabled, isRunning, config.statusMessage || null);
             } catch (_) {
-                showMessage('recipientMessage', 'Failed to load backend config', 'error');
+                showToast('Failed to load backend configuration', 'error');
             }
         }
 
@@ -1024,27 +1931,29 @@
                     body: JSON.stringify({ time }),
                 });
 
-                if (!response.ok) {
-                    throw new Error('Unable to update schedule');
-                }
+                if (!response.ok) throw new Error('Unable to update schedule');
 
                 const payload = await response.json();
                 schedulerTimeUtc = payload?.config?.time || time;
                 applyUtcTimeToIstUi(schedulerTimeUtc);
                 updateScheduleText(schedulerTimeUtc);
-            } catch (_) {
-                showMessage('schedulerMessage', 'Failed to update schedule', 'error');
-                return;
+                showToast('Schedule updated successfully', 'success');
+            } catch (err) {
+                showToast('Failed to update schedule: ' + err.message, 'error');
             }
-            
-            showMessage('schedulerMessage', 'Schedule updated successfully');
         }
 
         async function triggerNow() {
             const triggerBtn = document.getElementById('instantTriggerBtn');
-            const originalText = triggerBtn.textContent;
+            const originalHtml = triggerBtn.innerHTML;
             triggerBtn.disabled = true;
-            triggerBtn.textContent = 'Triggering...';
+            triggerBtn.innerHTML = `
+                <svg class="switch-spinner" style="display:inline-block;" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" opacity="0.3"></circle>
+                    <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+                </svg>
+                Triggering...
+            `;
 
             try {
                 const response = await fetch('/scheduler/trigger', {
@@ -1058,33 +1967,28 @@
 
                 const payload = await response.json();
                 if (payload?.status === 'success') {
-                    showMessage('schedulerMessage', 'Instant trigger started. Notifications are sent only when new unsent jobs are found.');
+                    showToast('Instant search started. Notifications sent if new unsent jobs are discovered.', 'success');
                     await fetchActivities();
                     await fetchSavedJobs();
                     setTimeout(async () => {
                         await loadServerConfig();
                         updateLastRunText(lastSuccessfulRunUtc);
                         await fetchSavedJobs();
-                    }, 3000);
+                    }, 3500);
                 } else if (payload?.status === 'busy') {
-                    showMessage('schedulerMessage', payload?.message || 'Scheduler is already running', 'error');
-                    await fetchActivities();
-                    await fetchSavedJobs();
+                    showToast(payload?.message || 'Scheduler is already running', 'error');
                 } else {
-                    showMessage('schedulerMessage', payload?.message || 'Trigger failed', 'error');
-                    await fetchActivities();
-                    await fetchSavedJobs();
+                    showToast(payload?.message || 'Trigger execution failed', 'error');
                 }
             } catch (error) {
-                showMessage('schedulerMessage', `Failed to trigger scheduler: ${error?.message || 'Unknown error'}`, 'error');
-                await fetchActivities();
-                await fetchSavedJobs();
+                showToast(`Failed to trigger search: ${error?.message || 'Unknown error'}`, 'error');
             } finally {
                 triggerBtn.disabled = false;
-                triggerBtn.textContent = originalText;
+                triggerBtn.innerHTML = originalHtml;
             }
         }
 
+        // ── Console & Log Viewer ─────────────────────────────
         function formatActivityTime(iso) {
             if (!iso) return '--';
             const date = new Date(iso);
@@ -1104,8 +2008,7 @@
 
             const isRunning = Boolean(payload?.isRunning);
             stateEl.textContent = isRunning ? 'Running' : 'Idle';
-            stateEl.classList.remove('running', 'idle');
-            stateEl.classList.add(isRunning ? 'running' : 'idle');
+            stateEl.className = `activity-state ${isRunning ? 'running' : 'idle'}`;
 
             if (payload?.lastSuccessfulRunUtc) {
                 const dt = new Date(payload.lastSuccessfulRunUtc);
@@ -1128,27 +2031,33 @@
                 return;
             }
 
+            const shouldScroll = logBox.scrollTop + logBox.clientHeight >= logBox.scrollHeight - 50;
+
             logBox.innerHTML = entries
-                .slice(-120)
+                .slice(-150)
                 .map((entry) => {
-                    const level = entry.level || 'info';
+                    const level = (entry.level || 'info').toLowerCase();
                     const time = formatActivityTime(entry.timestamp);
-                    const msg = String(entry.message || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                    const label = level.toUpperCase().padEnd(5, ' ');
-                    return `<div class="activity-row ${level}">[${time}] ${label} ${msg}</div>`;
+                    const msg = escapeHtml(entry.message || '');
+                    return `
+                        <div class="activity-row">
+                            <span class="activity-time">[${time}]</span>
+                            <span class="activity-tag ${level}">${level.toUpperCase()}</span>
+                            <span class="activity-msg">${msg}</span>
+                        </div>
+                    `;
                 })
                 .join('');
 
-            logBox.scrollTop = logBox.scrollHeight;
+            if (shouldScroll) {
+                logBox.scrollTop = logBox.scrollHeight;
+            }
         }
 
         async function fetchActivities() {
             try {
                 const response = await fetch('/scheduler/activities');
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const payload = await response.json();
                 renderActivities(payload);
             } catch (_) {
@@ -1156,46 +2065,54 @@
                 const stateEl = document.getElementById('activityState');
                 if (stateEl) {
                     stateEl.textContent = 'Unavailable';
-                    stateEl.classList.remove('running', 'idle');
-                    stateEl.classList.add('idle');
+                    stateEl.className = 'activity-state idle';
                 }
-                if (logBox) {
-                    logBox.innerHTML = '<div class="activity-empty">Unable to load activity stream from backend.</div>';
+                if (logBox && logBox.children.length === 0) {
+                    logBox.innerHTML = '<div class="activity-empty">Live telemetry stream temporarily unavailable.</div>';
                 }
             }
         }
 
+        function copyActivityLogs() {
+            const logBox = document.getElementById('activityLogBox');
+            if (!logBox) return;
+            const text = logBox.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Activity logs copied to clipboard', 'success');
+            }).catch(() => {
+                showToast('Failed to copy logs', 'error');
+            });
+        }
+
         function startActivityPolling() {
-            if (activityPollTimer) {
-                clearInterval(activityPollTimer);
-            }
+            if (activityPollTimer) clearInterval(activityPollTimer);
             activityPollTimer = setInterval(fetchActivities, 3000);
         }
 
         function startSavedJobsPolling() {
-            if (savedJobsPollTimer) {
-                clearInterval(savedJobsPollTimer);
-            }
+            if (savedJobsPollTimer) clearInterval(savedJobsPollTimer);
             savedJobsPollTimer = setInterval(fetchSavedJobs, 60000);
         }
 
+        // ── Recipients Management ────────────────────────────
         async function addRecipient() {
-            const email = document.getElementById('recipientEmail').value.trim();
+            const emailInput = document.getElementById('recipientEmail');
+            const email = emailInput.value.trim();
             
             if (!email) {
-                showMessage('recipientMessage', 'Please enter an email address', 'error');
+                showToast('Please enter an email address', 'error');
                 return;
             }
 
             if (!isValidEmail(email)) {
-                showMessage('recipientMessage', 'Please enter a valid email address', 'error');
+                showToast('Please enter a valid email address', 'error');
                 return;
             }
 
             const normalizedEmail = email.toLowerCase();
 
             if (recipients.includes(normalizedEmail)) {
-                showMessage('recipientMessage', 'This recipient is already added', 'error');
+                showToast('This recipient is already added', 'error');
                 return;
             }
 
@@ -1206,22 +2123,19 @@
                     body: JSON.stringify({ email: normalizedEmail }),
                 });
 
-                if (!response.ok) {
-                    throw new Error('Unable to add recipient');
-                }
+                if (!response.ok) throw new Error('Unable to add recipient');
 
                 const payload = await response.json();
                 recipients = Array.isArray(payload?.config?.recipients)
                     ? payload.config.recipients
                     : recipients;
-            } catch (_) {
-                showMessage('recipientMessage', 'Failed to add recipient', 'error');
-                return;
-            }
 
-            document.getElementById('recipientEmail').value = '';
-            renderRecipients();
-            showMessage('recipientMessage', 'Recipient added successfully');
+                emailInput.value = '';
+                renderRecipients();
+                showToast('Recipient added successfully', 'success');
+            } catch (_) {
+                showToast('Failed to add recipient', 'error');
+            }
         }
 
         async function deleteRecipient(email) {
@@ -1230,50 +2144,51 @@
                     method: 'DELETE',
                 });
 
-                if (!response.ok) {
-                    throw new Error('Unable to remove recipient');
-                }
+                if (!response.ok) throw new Error('Unable to remove recipient');
 
                 const payload = await response.json();
                 recipients = Array.isArray(payload?.config?.recipients)
                     ? payload.config.recipients
                     : recipients.filter(r => r !== email);
-            } catch (_) {
-                showMessage('recipientMessage', 'Failed to remove recipient', 'error');
-                return;
-            }
 
-            renderRecipients();
-            showMessage('recipientMessage', 'Recipient removed');
+                renderRecipients();
+                showToast('Recipient removed', 'success');
+            } catch (_) {
+                showToast('Failed to remove recipient', 'error');
+            }
         }
 
         function renderRecipients() {
             const container = document.getElementById('recipientsList');
             const count = document.getElementById('recipientCount');
+            const badge = document.getElementById('recipientCountBadge');
 
-            count.textContent = recipients.length;
+            count.textContent = String(recipients.length);
+            badge.textContent = `${recipients.length} configured`;
 
             if (recipients.length === 0) {
                 container.innerHTML = '<div class="empty-state">No recipients added yet</div>';
                 return;
             }
 
-            container.innerHTML = recipients.map(email => `
-                <div class="recipient-item">
-                    <span class="recipient-email">${email}</span>
-                    <button class="btn-delete" onclick="deleteRecipient('${email}')">Delete</button>
-                </div>
-            `).join('');
-        }
-
-        function showMessage(elementId, message, type = 'success') {
-            const element = document.getElementById(elementId);
-            element.textContent = message;
-            element.classList.add('show');
-            
-            setTimeout(() => {
-                element.classList.remove('show');
-            }, 3000);
+            container.innerHTML = recipients.map(email => {
+                const initials = email.slice(0, 2).toUpperCase();
+                return `
+                    <div class="recipient-item">
+                        <div class="recipient-info">
+                            <div class="recipient-avatar">${initials}</div>
+                            <span class="recipient-email">${escapeHtml(email)}</span>
+                        </div>
+                        <button class="btn-delete" onclick="deleteRecipient('${escapeHtml(email)}')" title="Delete recipient">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
+                            Delete
+                        </button>
+                    </div>
+                `;
+            }).join('');
         }
 
         function isValidEmail(email) {
@@ -1281,13 +2196,12 @@
             return re.test(email);
         }
 
-        // Handle Enter key in email input
+        // Enter key in email input
         document.getElementById('recipientEmail').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                addRecipient();
-            }
+            if (e.key === 'Enter') addRecipient();
         });
 
+        // Time dropdown updates
         document.addEventListener('change', (e) => {
             const targetId = e.target && e.target.id;
             if (targetId === 'triggerHour' || targetId === 'triggerMinute' || targetId === 'triggerPeriod') {
