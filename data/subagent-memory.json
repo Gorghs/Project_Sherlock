@@ -1,5 +1,72 @@
 {
   "version": 1,
-  "updatedAt": "2026-05-18T08:53:37.444Z",
-  "stats": []
+  "updatedAt": "2026-10-21T14:44:09.468Z",
+  "stats": [
+    {
+      "query": "graduate data analyst data engineer sql python internship india remote bengaluru mumbai hyderabad pune",
+      "runs": 1,
+      "rawFoundTotal": 250,
+      "qualifiedFoundTotal": 4,
+      "newFoundTotal": 4,
+      "deliveredRuns": 1,
+      "noJobRuns": 0,
+      "scoreEma": 26,
+      "lastRunDate": "2026-10-21"
+    },
+    {
+      "query": "fresher qa test automation sdet internship india remote chennai noida pune bengaluru",
+      "runs": 1,
+      "rawFoundTotal": 250,
+      "qualifiedFoundTotal": 4,
+      "newFoundTotal": 4,
+      "deliveredRuns": 1,
+      "noJobRuns": 0,
+      "scoreEma": 26,
+      "lastRunDate": "2026-10-21"
+    },
+    {
+      "query": "junior cloud devops support engineer trainee india remote hyderabad pune gurugram bengaluru",
+      "runs": 1,
+      "rawFoundTotal": 250,
+      "qualifiedFoundTotal": 3,
+      "newFoundTotal": 3,
+      "deliveredRuns": 1,
+      "noJobRuns": 0,
+      "scoreEma": 20,
+      "lastRunDate": "2026-10-21"
+    },
+    {
+      "query": "fresher internship software engineer india remote bengaluru hyderabad pune chennai noida gurugram mumbai",
+      "runs": 1,
+      "rawFoundTotal": 250,
+      "qualifiedFoundTotal": 3,
+      "newFoundTotal": 3,
+      "deliveredRuns": 1,
+      "noJobRuns": 0,
+      "scoreEma": 20,
+      "lastRunDate": "2026-10-21"
+    },
+    {
+      "query": "entry level frontend react javascript internship india remote bengaluru hyderabad pune chennai",
+      "runs": 1,
+      "rawFoundTotal": 250,
+      "qualifiedFoundTotal": 3,
+      "newFoundTotal": 3,
+      "deliveredRuns": 1,
+      "noJobRuns": 0,
+      "scoreEma": 20,
+      "lastRunDate": "2026-10-21"
+    },
+    {
+      "query": "entry level backend nodejs java python internship india remote noida gurugram pune hyderabad",
+      "runs": 1,
+      "rawFoundTotal": 250,
+      "qualifiedFoundTotal": 3,
+      "newFoundTotal": 3,
+      "deliveredRuns": 1,
+      "noJobRuns": 0,
+      "scoreEma": 20,
+      "lastRunDate": "2026-10-21"
+    }
+  ]
 }

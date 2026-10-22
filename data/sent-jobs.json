@@ -1,186 +1,58 @@
 [
   {
-    "jobId": "habrcareer_91254179",
-    "jobTitle": "Software Architect",
-    "company": "Eyes of Wonder",
-    "source": "habrcareer",
-    "sentAt": "2026-04-03T04:04:00.394Z",
-    "url": "https://career.habr.com/vacancies/1000165901"
+    "jobId": "linkedin_1997481659",
+    "jobTitle": "Application Development Intern - Summer 2027",
+    "company": "Indiana Farm Bureau Insurance",
+    "source": "linkedin",
+    "sentAt": "2026-10-21T14:44:09.461Z",
+    "url": "https://www.linkedin.com/jobs/view/application-development-intern-summer-2027-at-indiana-farm-bureau-insurance-4469337475"
   },
   {
-    "jobId": "cursor_632813880",
-    "jobTitle": "Commercial Expansion AE (NYC)Sales·Full-time·San Francisco, New YorkApply →",
-    "company": "Cursor",
-    "source": "cursor",
-    "sentAt": "2026-04-03T04:04:00.627Z",
-    "url": "https://cursor.com/careers/commercial-expansion-ae-nyc"
+    "jobId": "linkedin_322472883",
+    "jobTitle": "Data Analysis Intern",
+    "company": "Ivy Tech Community College",
+    "source": "linkedin",
+    "sentAt": "2026-10-21T14:44:09.462Z",
+    "url": "https://www.linkedin.com/jobs/view/data-analysis-intern-at-ivy-tech-community-college-4471628751"
   },
   {
-    "jobId": "habrcareer_524450210",
-    "jobTitle": "Java Developer (Клик)",
-    "company": "Сбер",
-    "source": "habrcareer",
-    "sentAt": "2026-04-03T04:04:00.799Z",
-    "url": "https://career.habr.com/vacancies/1000159214"
+    "jobId": "linkedin_1172709796",
+    "jobTitle": "Computer Scientist (traineeship)",
+    "company": "INGAGE Institute: The World of Risks in the AI Era",
+    "source": "linkedin",
+    "sentAt": "2026-10-21T14:44:09.463Z",
+    "url": "https://www.linkedin.com/jobs/view/computer-scientist-traineeship-at-ingage-institute-the-world-of-risks-in-the-ai-era-4442152410"
   },
   {
-    "jobId": "habrcareer_1460164419",
-    "jobTitle": "DevOps-инженер/ИБ (devops engineer, information security)",
-    "company": "Квазар",
-    "source": "habrcareer",
-    "sentAt": "2026-04-03T04:04:00.977Z",
-    "url": "https://career.habr.com/vacancies/1000165624"
+    "jobId": "linkedin_67622843",
+    "jobTitle": "Software Engineer Internship",
+    "company": "Layer5",
+    "source": "linkedin",
+    "sentAt": "2026-10-21T14:44:09.463Z",
+    "url": "https://www.linkedin.com/jobs/view/software-engineer-internship-at-layer5-4439956880"
   },
   {
-    "jobId": "himalayas_674841760",
-    "jobTitle": "VP, Revenue Operations",
-    "company": "Garner Health",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:01.158Z",
-    "url": "https://himalayas.app/companies/garner-health/jobs/vp-revenue-operations"
+    "jobId": "internshala_76814687",
+    "jobTitle": "Sales Executive (Fresher Hiring)",
+    "company": "PlanetSpark                        \n                                                    Actively hiring",
+    "source": "internshala",
+    "sentAt": "2026-10-21T14:44:09.464Z",
+    "url": "https://internshala.com/job/detail/fresher-sales-executive-fresher-hiring-job-in-multiple-locations-at-planetspark1792388607"
   },
   {
-    "jobId": "himalayas_2011347210",
-    "jobTitle": "Director of Data Science",
-    "company": "SmarterDx",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:01.342Z",
-    "url": "https://himalayas.app/companies/smarterdx/jobs/director-of-data-science"
+    "jobId": "internshala_800146128",
+    "jobTitle": "Management Trainee – Marketing & Sales",
+    "company": "LIC Housing Finance Limited                        \n                                                    Actively hiring",
+    "source": "internshala",
+    "sentAt": "2026-10-21T14:44:09.465Z",
+    "url": "https://internshala.com/job/detail/fresher-management-trainee--marketing-sales-job-in-multiple-locations-at-lic-housing-finance-limited1788874463"
   },
   {
-    "jobId": "himalayas_1841508503",
-    "jobTitle": "Geo Core Digital Native Account Executive",
-    "company": "Databricks",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:01.498Z",
-    "url": "https://himalayas.app/companies/databricks/jobs/geo-core-digital-native-account-executive"
-  },
-  {
-    "jobId": "himalayas_648922360",
-    "jobTitle": "Global Segment Leader – Agriculture",
-    "company": "Momentive",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:01.693Z",
-    "url": "https://himalayas.app/companies/momentive-com/jobs/global-segment-leader-agriculture-9524061846"
-  },
-  {
-    "jobId": "himalayas_396806657",
-    "jobTitle": "Senior Android Engineer, Apps Platform (Performance)",
-    "company": "Reddit",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:01.878Z",
-    "url": "https://himalayas.app/companies/reddit/jobs/senior-android-engineer-apps-platform-performance-7369285612"
-  },
-  {
-    "jobId": "habrcareer_791535600",
-    "jobTitle": "AI Agent Engineer (Middle+)",
-    "company": "Kortes",
-    "source": "habrcareer",
-    "sentAt": "2026-04-03T04:04:02.105Z",
-    "url": "https://career.habr.com/vacancies/1000165937"
-  },
-  {
-    "jobId": "himalayas_941502076",
-    "jobTitle": "Medical Director, Health Plan",
-    "company": "Sana",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:02.327Z",
-    "url": "https://himalayas.app/companies/sana/jobs/medical-director-health-plan"
-  },
-  {
-    "jobId": "uber_1251723532",
-    "jobTitle": "Head of Exclusives' Account Management, Postmates and West Uber Eats",
-    "company": "Uber",
-    "source": "uber",
-    "sentAt": "2026-04-03T04:04:02.512Z",
-    "url": ""
-  },
-  {
-    "jobId": "himalayas_1610016644",
-    "jobTitle": "Technical Director",
-    "company": "Skydance",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:02.697Z",
-    "url": "https://himalayas.app/companies/skydance/jobs/technical-director"
-  },
-  {
-    "jobId": "himalayas_1560661994",
-    "jobTitle": "Product Manager, API & Platform",
-    "company": "Descript",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:02.863Z",
-    "url": "https://himalayas.app/companies/descript/jobs/product-manager-api-platform"
-  },
-  {
-    "jobId": "himalayas_1010825503",
-    "jobTitle": "Head of Flight Test and Safety",
-    "company": "Applied Intuition",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:03.010Z",
-    "url": "https://himalayas.app/companies/applied-intuition/jobs/head-of-flight-test-and-safety"
-  },
-  {
-    "jobId": "himalayas_981578231",
-    "jobTitle": "Senior Software Engineer, Cloud Enablement",
-    "company": "Temporal Technologies",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:03.154Z",
-    "url": "https://himalayas.app/companies/temporal-technologies/jobs/senior-software-engineer-cloud-enablement"
-  },
-  {
-    "jobId": "himalayas_709052236",
-    "jobTitle": "Staff Network Operations Engineer - Load Balancers - F5 - Nginx - Federal",
-    "company": "ServiceNow",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:03.315Z",
-    "url": "https://himalayas.app/companies/servicenow/jobs/staff-network-operations-engineer-load-balancers-f5-nginx-federal"
-  },
-  {
-    "jobId": "himalayas_1467818242",
-    "jobTitle": "Director of Project Implementations",
-    "company": "Bedrock Energy",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:03.549Z",
-    "url": "https://himalayas.app/companies/bedrock-energy/jobs/director-of-project-implementations"
-  },
-  {
-    "jobId": "himalayas_1279896343",
-    "jobTitle": "Senior Director, RevOps",
-    "company": "DNSFilter",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:03.707Z",
-    "url": "https://himalayas.app/companies/dnsfilter/jobs/senior-director-revops"
-  },
-  {
-    "jobId": "himalayas_1999519760",
-    "jobTitle": "Senior Environmental Compliance Manager (on-call position)",
-    "company": "AECOM",
-    "source": "himalayas",
-    "sentAt": "2026-04-03T04:04:03.903Z",
-    "url": "https://himalayas.app/companies/aecom/jobs/senior-environmental-compliance-manager-on-call-position"
-  },
-  {
-    "jobId": "habrcareer_1778967255",
-    "jobTitle": "AI Backend Engineer (LLM, NLP, Voice AI)",
-    "company": "НТК",
-    "source": "habrcareer",
-    "sentAt": "2026-04-03T09:01:08.773Z",
-    "url": "https://career.habr.com/vacancies/1000165710"
-  },
-  {
-    "jobId": "habrcareer_305474876",
-    "jobTitle": "DevOps (SRE) lead/Руководитель DevOps команды",
-    "company": "Eyes of Wonder",
-    "source": "habrcareer",
-    "sentAt": "2026-04-03T09:01:08.952Z",
-    "url": "https://career.habr.com/vacancies/1000165963"
-  },
-  {
-    "jobId": "habrcareer_258015700",
-    "jobTitle": "Frontend Engineer",
-    "company": "Atlantis",
-    "source": "habrcareer",
-    "sentAt": "2026-04-03T09:01:09.220Z",
-    "url": "https://career.habr.com/vacancies/1000165891"
+    "jobId": "internshala_631809179",
+    "jobTitle": "Content Compliance Trainee - Kannada",
+    "company": "TO THE NEW Private Limited",
+    "source": "internshala",
+    "sentAt": "2026-10-21T14:44:09.466Z",
+    "url": "https://internshala.com/job/detail/fresher-content-compliance-trainee-kannada-job-in-noida-at-to-the-new-private-limited1792050009"
   }
 ]
